@@ -1,6 +1,6 @@
 # VR Dungeon Game
 
-This repository contains the **VR Dungeon Game**, a Unity project developed for our **First Year, Semester 2 Group Project**.
+This repository contains the **VR Dungeon Game** (working title), a Unity project developed for our **First Year, Semester 2 Group Project**.
 Players collect artifacts, solve puzzles, and escape a collapsing pyramid while managing inventory and weight constraints.
 
 ---
