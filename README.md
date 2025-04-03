@@ -16,7 +16,7 @@ Players collect artifacts, solve puzzles, and escape a collapsing pyramid while 
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/your-repo-name.git
+   git clone https://github.com/domdgn/VR-Dungeon-Game.git
    ```
 2. **Add the project to Unity Hub**:
    - Open Unity Hub
