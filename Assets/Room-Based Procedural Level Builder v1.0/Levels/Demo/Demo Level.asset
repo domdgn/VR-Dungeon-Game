@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0651eb22174ec8f499275bfe624999b4, type: 3}
+  m_Name: Demo Level
+  m_EditorClassIdentifier: 
+  levelName: Demo
+  roomPrefabs:
+  - {fileID: 5507085412020659082, guid: 5072ad0d3a7b6334e9b1154bb40b2fe7, type: 3}
+  - {fileID: 5507085412020659082, guid: 17d8f4b77706ef84f87bbe40e44c5628, type: 3}
+  - {fileID: 5507085412020659082, guid: fb7f6ed254e846c4b8113dabc0349ab6, type: 3}
+  - {fileID: 5507085412020659082, guid: 51d089fcc82409c47a39a08afd4cf31e, type: 3}
+  - {fileID: 5507085412020659082, guid: 6fe06b9cd3b9b5f4d978a3b32726674a, type: 3}
+  - {fileID: 5507085412020659082, guid: 0f3f86bf9b3a4e94c915d83eaf28fb67, type: 3}
+  - {fileID: 5507085412020659082, guid: 96d5e02e05f7bf44ba4d71c981b3e0cf, type: 3}
+  hallwayPrefabs:
+  - {fileID: 5507085412020659082, guid: 396a5788d8d63f7478d01a8f3e8a2566, type: 3}
+  - {fileID: 5507085412020659082, guid: f4b64b9aca2cc89439bbddb261280524, type: 3}
+  totalRooms: 100
+  hallwayChance: 0.491
+  sequentialHallwayChanceMultiplier: 0.343
