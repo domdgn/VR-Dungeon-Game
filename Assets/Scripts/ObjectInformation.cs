@@ -11,4 +11,5 @@ public class ObjectInformation : MonoBehaviour
         Debug.Log (ItemInformation.health);
         ItemInformation.Randomise();
     }
+
 }
