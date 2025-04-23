@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "objectInformation", menuName = "Custom/objectInformation")]
-
-public class NewBehaviourScript : ScriptableObject
+public class ObjectInformation : MonoBehaviour
 {
-   public string objectName; // Objects Name 
-   public float health; // Objects Health 
-   public float mass; // weight of the object
-   public float value; // value of object
-   public GameObject ObjectPrefab; // Prefab for the objcet
+    [SerializeField] private ScriptableObjectInformation ItemInformation;
 
-    public void Randomise()
-   {
-      health = Random.Range(20, 100);
-      mass = Random.Range(20, 100);
-      value = Random.Range(40, 1000);
-   }
+    private void Start() {
+        Debug.Log(ItemInformation.objectName);
+        Debug.Log (ItemInformation.health);
+        ItemInformation.Randomise();
+    }
 }
