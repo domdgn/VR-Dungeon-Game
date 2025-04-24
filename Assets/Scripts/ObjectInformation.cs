@@ -4,61 +4,38 @@ using UnityEngine;
 
 public class ObjectInformation : MonoBehaviour, IDamageable
 {
-    [SerializeField] private ScriptableObjectInformation ItemInformation;
+    [SerializeField] private ScriptableObjectInformation ItemInformation; // ScriptableObject that stores object data (e.g. name, health)
 
-    public float damageMultiplier = 2f;
-
-    private Rigidbody rb;
-    private bool isGrounded = false;
-    private float lastYVelocity = 0f;
-
-    private void Start() 
+    private void Start()
     {
-        ItemInformation.Randomise(); // starts the function in the ScriptableObjectInformation file
-        ItemInformation.Createprefab(); // starts the function in the ScriptableObjectInformation file
-        Debug.Log(ItemInformation.objectName); // debug to check the scriptable object works 
-        Debug.Log (ItemInformation.value); // debug to check the randomiser works 
+        // Initialize object with randomized values from the ScriptableObject
+        ItemInformation.Randomise();
+        ItemInformation.Createprefab();
 
-        rb = GetComponent<Rigidbody>();
+        // Debug output to confirm values
+        Debug.Log(ItemInformation.objectName);
+        Debug.Log(ItemInformation.value);
     }
 
-    void Update()
-    {
-        if (!isGrounded)
-        {
-            lastYVelocity = rb.velocity.y;
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (!isGrounded && collision.gameObject.CompareTag("Ground"))
-        {
-            float impactVelocity = Mathf.Abs(lastYVelocity);
-            Damage(impactVelocity);
-            isGrounded = true;
-        }
-    }
-
-    void OnCollisionExit (Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-
+    // This method is required by the IFallDamageable interface
     public void Damage(float impactVelocity)
     {
-       if (impactVelocity > ItemInformation.safeFallVelocity)
-       {
-        float damage = (impactVelocity - ItemInformation.safeFallVelocity) *damageMultiplier;
-        ItemInformation.value -= damage;
-        Debug.Log($"player took {damage} fall damage! Health is now {ItemInformation.value}");
-       } 
-       else
-       {
-        Debug.Log("player landed safely. No damge taken.");
-       }
+        // Only apply damage if falling faster than the safe velocity
+        if (impactVelocity > ItemInformation.safeFallVelocity)
+        {
+            // Calculate how much damage to apply
+            float damage = (impactVelocity - ItemInformation.safeFallVelocity) * ItemInformation.damageMultiplier;
+
+            // Subtract damage from the object's "health" or "value"
+            ItemInformation.value -= damage;
+
+            // Output the damage taken and remaining value
+            Debug.Log($"Object took {damage} fall damage! Health is now {ItemInformation.value}");
+        }
+        else
+        {
+            // If fall wasn't hard enough, no damage is taken
+            Debug.Log("Object landed safely. No damage taken.");
+        }
     }
 }
