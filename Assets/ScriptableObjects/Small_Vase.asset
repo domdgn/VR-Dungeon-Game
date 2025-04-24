@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0a1c8878840d9d42861681f429693ba, type: 3}
-  m_Name: ScriptableItems
+  m_Name: Small_Vase
   m_EditorClassIdentifier: 
-  objectName: Vase
-  health: 58
-  mass: 64
-  value: 981
+  objectName: ' China Vase'
+  mass: 73
+  value: 320.92438
+  safeFallVelocity: 9
   ObjectPrefab: {fileID: 1461818044417763959, guid: a801440388843fa4d97ebda2b25d6817,
     type: 3}

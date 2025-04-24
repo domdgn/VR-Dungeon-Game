@@ -7,15 +7,20 @@ using UnityEngine;
 public class ScriptableObjectInformation : ScriptableObject
 {
    public string objectName; // Objects Name 
-   public float health; // Objects Health 
    public float mass; // weight of the object
-   public float value; // value of object
+   public float value; // value of object which will act as health too
+   public float safeFallVelocity; // Hieght for the item to take damage 
    public GameObject ObjectPrefab; // Prefab for the objcet
 
-    public void Randomise()
+    public void Randomise() // used to randomise the values of the items at the begining of the level
    {
-      health = Random.Range(20, 100);
       mass = Random.Range(20, 100);
       value = Random.Range(40, 1000);
+      safeFallVelocity = Random.Range(1,10);
+   }
+
+   public void Createprefab()
+   {
+      Debug.Log("Hello"); // creates the prefab into the scene
    }
 }
