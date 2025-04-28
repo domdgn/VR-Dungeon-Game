@@ -31,6 +31,10 @@ public class ObjectInformation : MonoBehaviour, IDamageable
 
             // Output the damage taken and remaining value
             Debug.Log($"Object took {damage} fall damage! Health is now {ItemInformation.value}");
+            if(ItemInformation.value < 1)
+            {
+                Debug.Log("Break Me!!");
+            }
         }
         else
         {

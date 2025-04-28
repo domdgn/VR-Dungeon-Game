@@ -6,7 +6,9 @@ public class FallDamagehandler : MonoBehaviour
 {
     private Rigidbody rb; // Rigidbody reference to get velocity
     private bool isGrounded = false; // Tracks whether the object is touching the ground
+    private bool onWall = false; // tracks whether the object is touching the wall 
     private float lastYVelocity = 0f; // Stores vertical velocity while falling
+    private float lastXVelocity = 0f; // Stores horizontal velocity while falling 
     private IDamageable damageable; // Interface reference to apply damage
 
     private void Start()
@@ -21,6 +23,7 @@ public class FallDamagehandler : MonoBehaviour
         if (!isGrounded)
         {
             lastYVelocity = rb.velocity.y;
+            lastXVelocity =  rb.velocity.x;
         }
     }
 
@@ -38,12 +41,19 @@ public class FallDamagehandler : MonoBehaviour
             // Mark object as grounded again
             isGrounded = true;
         }
+        
+        if (!onWall && !isGrounded && collision.gameObject.CompareTag("Wall"))
+        {
+            float impactVelocity = Mathf.Abs(lastXVelocity);
+            damageable?.Damage(impactVelocity);
+            onWall = true;
+        }
     }
 
     void OnCollisionExit(Collision collision)
     {
         // When the object leaves the ground, it's considered falling again
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && collision.gameObject.CompareTag("Wall"))
         {
             isGrounded = false;
         }
