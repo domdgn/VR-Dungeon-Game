@@ -17,7 +17,7 @@ public class ScriptableObjectInformation : ScriptableObject
    {
       mass = Random.Range(20, 100);
       value = Random.Range(40, 1000);
-      safeFallVelocity = Random.Range(1,10);
+      safeFallVelocity = Random.Range(1,5);
    }
 
    public void Createprefab()
