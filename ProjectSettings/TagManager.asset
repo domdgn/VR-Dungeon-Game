@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Entry
   - Ground
+  - LeftHand
+  - Pointer
+  - RightHand
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Rooms
   - Water
   - UI
   - 
