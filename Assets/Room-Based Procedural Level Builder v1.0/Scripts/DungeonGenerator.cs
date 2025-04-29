@@ -182,27 +182,42 @@ namespace ProceduralDungeon
                 roomToSpawn.transform.Rotate(Vector3.forward, 180f, Space.Self);
             }
         }
-
-
         private bool IsRoomOverlapping(GameObject room)
         {
-            Collider[] roomColliders = room.GetComponents<Collider>();
+            Collider collider = room.GetComponent<Collider>();
+
+            if(collider == null)
+    {
+                Debug.LogError("Room " + room.name + " has no collider! Add a collider to prevent overlapping.");
+                return true;
+            }
 
             LayerMask roomLayer = 1 << LayerMask.NameToLayer("Rooms");
 
-            foreach (Collider collider in roomColliders)
+            BoxCollider boxCollider = collider as BoxCollider;
+            if (boxCollider != null)
             {
-                Collider[] hitColliders = Physics.OverlapBox(room.transform.position, collider.bounds.extents, room.transform.rotation, roomLayer, QueryTriggerInteraction.Collide);
+                Vector3 worldSize = Vector3.Scale(boxCollider.size, room.transform.lossyScale);
+
+                Collider[] hitColliders = Physics.OverlapBox(
+                    room.transform.position + Vector3.Scale(boxCollider.center, room.transform.lossyScale),
+                    worldSize * 0.49f, // smaller to avoid self-detection
+                    room.transform.rotation,
+                    roomLayer,
+                    QueryTriggerInteraction.Collide
+                );
 
                 foreach (var hitCollider in hitColliders)
                 {
                     if (hitCollider.gameObject != room)
                     {
+                        Debug.Log($"Collision detected: {room.name} overlaps with {hitCollider.gameObject.name}");
                         return true;
                     }
                 }
-            }
 
+                return false;
+            }
             return false;
         }
         void SealOpenDoors()
