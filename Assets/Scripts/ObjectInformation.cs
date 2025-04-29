@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectInformation : MonoBehaviour, IDamageable
 {
     [SerializeField] private ScriptableObjectInformation ItemInformation; // ScriptableObject that stores object data (e.g. name, health)
-
+    
     private void Start()
     {
         // Initialize object with randomized values from the ScriptableObject
@@ -15,6 +15,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
         // Debug output to confirm values
         Debug.Log(ItemInformation.objectName);
         Debug.Log(ItemInformation.value);
+
     }
 
     // This method is required by the IFallDamageable interface

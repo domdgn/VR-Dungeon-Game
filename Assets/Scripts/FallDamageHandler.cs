@@ -11,6 +11,7 @@ public class FallDamagehandler : MonoBehaviour
     private float lastXVelocity = 0f; // Stores horizontal velocity while falling 
     private IDamageable damageable; // Interface reference to apply damage
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); // Get Rigidbody component
