@@ -9,6 +9,8 @@ TagManager:
   - LeftHand
   - Pointer
   - RightHand
+  - ItemSpawn
+  - Wall
   layers:
   - Default
   - TransparentFX

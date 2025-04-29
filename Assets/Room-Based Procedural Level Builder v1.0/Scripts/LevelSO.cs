@@ -10,6 +10,8 @@ namespace ProceduralDungeon
         public List<GameObject> roomPrefabs = new List<GameObject>();
         public List<GameObject> hallwayPrefabs = new List<GameObject>();
 
+        public List<GameObject> itemList = new List<GameObject>();
+
         [Header("Room Generation Settings")]
         [Tooltip("Total number of rooms, inclusive of hallways")]
         public int totalRooms = 15;

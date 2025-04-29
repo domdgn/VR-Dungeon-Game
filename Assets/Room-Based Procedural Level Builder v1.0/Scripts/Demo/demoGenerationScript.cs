@@ -17,8 +17,8 @@ namespace ProceduralDungeon
 
         private void Update()
         {
-            float button = genButton.action.ReadValue<float>();
-            if (button > 0)
+            //float button = genButton.action.ReadValue<float>();
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 genScript.ResetDungeon();
             }

@@ -24,10 +24,18 @@ namespace ProceduralDungeon
         private GameObject roomPrefabToPlace;
         private Transform dungeonParent;
         private int maxRooms;
+        private ItemSpawner itemSpawner;
 
         private void Awake()
         {
             placedRooms.Add(startRoom);
+            itemSpawner = GetComponent<ItemSpawner>();
+
+            if (itemSpawner == null)
+            {
+                Debug.LogError("ItemSpawner not found in scene!");
+            }
+
             ResetDungeon(); // Remove if you don't want dungeons to generate on Awake()
         }
 
@@ -71,6 +79,7 @@ namespace ProceduralDungeon
             hallwayChance = levelData.hallwayChance;
             sequentialHallwayChanceMulti = levelData.sequentialHallwayChanceMultiplier;
             currentHallwayChance = hallwayChance;
+            itemSpawner.SetList(levelData.itemList);
         }
 
         IEnumerator GenerateDungeon()
@@ -87,6 +96,7 @@ namespace ProceduralDungeon
             }
 
             SealOpenDoors();
+            itemSpawner.TriggerItemSpawning();
         }
 
 
@@ -170,7 +180,7 @@ namespace ProceduralDungeon
                 placedRooms.Add(roomToSpawn);
                 sourceEntryPoint.isConnected = true;
                 newEntryPoint.isConnected = true;
-
+                itemSpawner.AddItemSpawnPoints(roomToSpawn);
                 yield return null;
             }
         }
@@ -211,7 +221,7 @@ namespace ProceduralDungeon
                 {
                     if (hitCollider.gameObject != room)
                     {
-                        Debug.Log($"Collision detected: {room.name} overlaps with {hitCollider.gameObject.name}");
+                        //Debug.Log($"Collision detected: {room.name} overlaps with {hitCollider.gameObject.name}");
                         return true;
                     }
                 }
@@ -226,26 +236,28 @@ namespace ProceduralDungeon
             {
                 foreach (Transform child in room.transform)
                 {
-                    if (child.CompareTag("Entry") && child.GetComponent<EntryPoint>() && !child.GetComponent<EntryPoint>().isConnected)
+                    if (child.CompareTag("Entry") && child.GetComponent<EntryPoint>())
                     {
-                        bool hasOverlappingEntry = false;
-                        float checkRadius = 0.1f;
+                        if (!child.GetComponent<EntryPoint>().isConnected) {
+                            bool hasOverlappingEntry = false;
+                            float checkRadius = 0.1f;
 
-                        Collider[] colliders = Physics.OverlapSphere(child.position, checkRadius, ~0, QueryTriggerInteraction.Collide);
-                        foreach (Collider col in colliders)
-                        {
-                            if (col.transform == child) continue;
-
-                            if (col.CompareTag("Entry") && col.GetComponent<EntryPoint>())
+                            Collider[] colliders = Physics.OverlapSphere(child.position, checkRadius, ~0, QueryTriggerInteraction.Collide);
+                            foreach (Collider col in colliders)
                             {
-                                hasOverlappingEntry = true;
-                                break;
-                            }
-                        }
+                                if (col.transform == child) continue;
 
-                        if (!hasOverlappingEntry)
-                        {
-                            GameObject door = InstantiateUnderParent(closedDoorPrefab, child.transform.position, child.transform.rotation);
+                                if (col.CompareTag("Entry") && col.GetComponent<EntryPoint>())
+                                {
+                                    hasOverlappingEntry = true;
+                                    break;
+                                }
+                            }
+
+                            if (!hasOverlappingEntry)
+                            {
+                                GameObject door = InstantiateUnderParent(closedDoorPrefab, child.transform.position, child.transform.rotation);
+                            }
                         }
                         Destroy(child.gameObject);
                     }

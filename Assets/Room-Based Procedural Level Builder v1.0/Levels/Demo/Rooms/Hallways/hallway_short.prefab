@@ -114,6 +114,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 6b96020729ce93f488ec1754c0101dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 6b96020729ce93f488ec1754c0101dc6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -134,16 +139,36 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e3068afe455071742931c3820ad53a34, type: 2}
+    - target: {fileID: -788428359947163170, guid: 6b96020729ce93f488ec1754c0101dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 355483515115902558, guid: 6b96020729ce93f488ec1754c0101dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6b96020729ce93f488ec1754c0101dc6,
         type: 3}
       propertyPath: m_Name
       value: shortCorridor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547804924403634321, guid: 6b96020729ce93f488ec1754c0101dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 1724021883448410926, guid: 6b96020729ce93f488ec1754c0101dc6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e3068afe455071742931c3820ad53a34, type: 2}
+    - target: {fileID: 6387956550996291618, guid: 6b96020729ce93f488ec1754c0101dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6809538501980381070, guid: 6b96020729ce93f488ec1754c0101dc6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
