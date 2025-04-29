@@ -23,6 +23,7 @@ MonoBehaviour:
   hallwayPrefabs:
   - {fileID: 5507085412020659082, guid: 396a5788d8d63f7478d01a8f3e8a2566, type: 3}
   - {fileID: 5507085412020659082, guid: f4b64b9aca2cc89439bbddb261280524, type: 3}
+  - {fileID: 5507085412020659082, guid: 28e5494befb4c4e44aff01d49a475863, type: 3}
   totalRooms: 20
   hallwayChance: 0.306
   sequentialHallwayChanceMultiplier: 0.345
