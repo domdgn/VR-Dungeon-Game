@@ -188,7 +188,7 @@ namespace ProceduralDungeon
         {
             Collider[] roomColliders = room.GetComponents<Collider>();
 
-            LayerMask roomLayer = LayerMask.NameToLayer("Rooms");
+            LayerMask roomLayer = 1 << LayerMask.NameToLayer("Rooms");
 
             foreach (Collider collider in roomColliders)
             {

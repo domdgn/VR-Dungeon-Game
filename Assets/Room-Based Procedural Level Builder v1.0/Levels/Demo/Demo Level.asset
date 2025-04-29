@@ -14,16 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Demo
   roomPrefabs:
-  - {fileID: 5507085412020659082, guid: 5072ad0d3a7b6334e9b1154bb40b2fe7, type: 3}
-  - {fileID: 5507085412020659082, guid: 17d8f4b77706ef84f87bbe40e44c5628, type: 3}
-  - {fileID: 5507085412020659082, guid: fb7f6ed254e846c4b8113dabc0349ab6, type: 3}
-  - {fileID: 5507085412020659082, guid: 6fe06b9cd3b9b5f4d978a3b32726674a, type: 3}
-  - {fileID: 5507085412020659082, guid: 0f3f86bf9b3a4e94c915d83eaf28fb67, type: 3}
-  - {fileID: 5507085412020659082, guid: 96d5e02e05f7bf44ba4d71c981b3e0cf, type: 3}
+  - {fileID: 439761713439684871, guid: 0da50ab4b3485674782463e0156351a3, type: 3}
+  - {fileID: 439761713439684871, guid: 0da50ab4b3485674782463e0156351a3, type: 3}
+  - {fileID: 439761713439684871, guid: 040be616a317e0743afd1e135de1cfc0, type: 3}
   hallwayPrefabs:
-  - {fileID: 5507085412020659082, guid: 396a5788d8d63f7478d01a8f3e8a2566, type: 3}
-  - {fileID: 5507085412020659082, guid: f4b64b9aca2cc89439bbddb261280524, type: 3}
-  - {fileID: 5507085412020659082, guid: 28e5494befb4c4e44aff01d49a475863, type: 3}
-  totalRooms: 20
+  - {fileID: 439761713439684871, guid: 83ef34eb86b3dc1498822fa8e0263c25, type: 3}
+  - {fileID: 439761713439684871, guid: 988e3f3f4543aa444aeaba4bc5f4db92, type: 3}
+  - {fileID: 439761713439684871, guid: 4a3ae9fc39138804db8afbb8f5f38b0a, type: 3}
+  totalRooms: 200
   hallwayChance: 0.306
   sequentialHallwayChanceMultiplier: 0.345
