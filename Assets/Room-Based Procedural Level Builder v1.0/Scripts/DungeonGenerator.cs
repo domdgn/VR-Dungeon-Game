@@ -247,6 +247,7 @@ namespace ProceduralDungeon
                         {
                             GameObject door = InstantiateUnderParent(closedDoorPrefab, child.transform.position, child.transform.rotation);
                         }
+                        Destroy(child.gameObject);
                     }
                 }
             }
