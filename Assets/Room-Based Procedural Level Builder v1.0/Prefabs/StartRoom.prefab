@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3080823240055346566}
-  - component: {fileID: 6000482997882691823}
+  - component: {fileID: 363735246707621957}
   m_Layer: 3
   m_Name: StartRoom
   m_TagString: Untagged
@@ -37,8 +37,8 @@ Transform:
   - {fileID: 6032883340943254820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6000482997882691823
-BoxCollider:
+--- !u!64 &363735246707621957
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -52,12 +52,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 13.79, y: 7.8, z: 15.77}
-  m_Center: {x: 0.91, y: 2.25, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 071a3d30949d2a64594c83b606054ac0, type: 3}
 --- !u!1001 &1893684497197120570
 PrefabInstance:
   m_ObjectHideFlags: 0

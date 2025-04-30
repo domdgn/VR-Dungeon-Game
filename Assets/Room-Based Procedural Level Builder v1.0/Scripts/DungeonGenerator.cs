@@ -10,6 +10,7 @@ namespace ProceduralDungeon
         public GameObject startRoom;
         public GameObject masterPrefab;
         public GameObject closedDoorPrefab;
+        public GameObject doorPrefab;
 
         [Header("Generation Settings")]
         [Tooltip("Each level is its own Scriptable Object and has its own generation settings and prefabs.\nRefer to the Demo Level SO for more info.")]
@@ -180,6 +181,8 @@ namespace ProceduralDungeon
                 placedRooms.Add(roomToSpawn);
                 sourceEntryPoint.isConnected = true;
                 newEntryPoint.isConnected = true;
+                sourceEntryPoint.connectedEntry = newEntryPoint;
+                newEntryPoint.connectedEntry = sourceEntryPoint;
                 itemSpawner.AddItemSpawnPoints(roomToSpawn);
                 yield return null;
             }
@@ -238,7 +241,8 @@ namespace ProceduralDungeon
                 {
                     if (child.CompareTag("Entry") && child.GetComponent<EntryPoint>())
                     {
-                        if (!child.GetComponent<EntryPoint>().isConnected) {
+                        EntryPoint entry = child.GetComponent<EntryPoint>();
+                        if (!entry.isConnected) {
                             bool hasOverlappingEntry = false;
                             float checkRadius = 0.1f;
 
@@ -259,6 +263,15 @@ namespace ProceduralDungeon
                                 GameObject door = InstantiateUnderParent(closedDoorPrefab, child.transform.position, child.transform.rotation);
                             }
                         }
+
+                        if (entry.isConnected && entry.connectedEntry != null && entry.doorAble)
+                        {
+                            if (entry.GetInstanceID() < entry.connectedEntry.GetInstanceID())
+                            {
+                                GameObject door = InstantiateUnderParent(doorPrefab, child.position, child.rotation);
+                            }
+                        }
+
                         Destroy(child.gameObject);
                     }
                 }

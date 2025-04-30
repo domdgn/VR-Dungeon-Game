@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 847534991630753179}
   - component: {fileID: 7404879741596764412}
+  - component: {fileID: 914100167693970919}
   m_Layer: 3
   m_Name: 2_corner
   m_TagString: Untagged
@@ -63,6 +64,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 5.5, z: 10}
   m_Center: {x: 0, y: 2.25, z: 0}
+--- !u!114 &914100167693970919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439761713439684871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76bfd96a1db02d47af597a53d06ba8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  activationDistance: 20
 --- !u!1 &2681768486033154077
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +129,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -147,7 +162,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -232,7 +247,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -265,7 +280,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
