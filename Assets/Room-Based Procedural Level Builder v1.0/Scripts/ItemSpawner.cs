@@ -9,6 +9,8 @@ public class ItemSpawner : MonoBehaviour
     private List<Transform> itemSpawnPoints = new List<Transform>();
     public Vector3 spawnOffset = Vector3.zero;
 
+    private List<GameObject> spawnedItems = new List<GameObject>();
+
     public void SetList(List<GameObject> itemList)
     {
         items = itemList;
@@ -39,7 +41,8 @@ public class ItemSpawner : MonoBehaviour
 
             Vector3 spawnPos = spawnPoint.position + spawnOffset;
 
-            Instantiate(itemToSpawn, spawnPos, spawnPoint.rotation);
+            GameObject spawnedItem = Instantiate(itemToSpawn, spawnPos, spawnPoint.rotation);
+            spawnedItems.Add(spawnedItem);
         }
     }
 
@@ -60,4 +63,13 @@ public class ItemSpawner : MonoBehaviour
         itemSpawnPoints.Clear();
     }
 
+
+    public void DeleteAllItems()
+    {
+        foreach (GameObject item in spawnedItems)
+        {
+            Destroy(item.gameObject);
+        }
+        spawnedItems.Clear();
+    }
 }

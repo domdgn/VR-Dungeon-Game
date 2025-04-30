@@ -251,13 +251,13 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 8694514634709940132}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 1
+  m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 0
+  m_MovementType: 1
   m_VelocityDamping: 0.815
   m_VelocityScale: 1
   m_AngularVelocityDamping: 0.871

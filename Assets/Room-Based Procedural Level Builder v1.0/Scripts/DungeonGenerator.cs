@@ -63,6 +63,7 @@ namespace ProceduralDungeon
         public void ResetDungeon()
         {
             ClearLevel();
+            itemSpawner.DeleteAllItems();
 
             if (levels.Count > 0)
             {
@@ -264,13 +265,13 @@ namespace ProceduralDungeon
                             }
                         }
 
-                        if (entry.isConnected && entry.connectedEntry != null && entry.doorAble)
-                        {
-                            if (entry.GetInstanceID() < entry.connectedEntry.GetInstanceID())
-                            {
-                                GameObject door = InstantiateUnderParent(doorPrefab, child.position, child.rotation);
-                            }
-                        }
+                        //if (entry.isConnected && entry.connectedEntry != null && entry.doorAble)
+                        //{
+                        //    if (entry.GetInstanceID() < entry.connectedEntry.GetInstanceID())
+                        //    {
+                        //        GameObject door = InstantiateUnderParent(doorPrefab, child.position, child.rotation);
+                        //    }
+                        //}
 
                         Destroy(child.gameObject);
                     }
