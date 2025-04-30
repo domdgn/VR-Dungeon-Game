@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000943854591015257}
   - component: {fileID: 8960959499948009452}
+  - component: {fileID: 4780730295573191922}
   m_Layer: 0
   m_Name: DungeonGenerator
   m_TagString: GameController
@@ -46,8 +47,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startRoom: {fileID: 5507085412020659082, guid: d5efde166617a3543980b8966ac30c24,
     type: 3}
-  masterPrefab: {fileID: 5507085412020659082, guid: 51d089fcc82409c47a39a08afd4cf31e,
+  masterPrefab: {fileID: 439761713439684871, guid: 0da50ab4b3485674782463e0156351a3,
     type: 3}
   closedDoorPrefab: {fileID: 4047864689047995498, guid: 0561cd9f4f076b84aad303c4623399ce,
     type: 3}
   levels: []
+--- !u!114 &4780730295573191922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324719776194103248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333a4c5134276bd44b29ee3a533c82b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
