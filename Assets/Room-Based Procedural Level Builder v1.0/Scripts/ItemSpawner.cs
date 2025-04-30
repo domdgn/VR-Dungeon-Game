@@ -7,6 +7,7 @@ public class ItemSpawner : MonoBehaviour
 {
     private List<GameObject> items = new List<GameObject>();
     private List<Transform> itemSpawnPoints = new List<Transform>();
+    public Vector3 spawnOffset = Vector3.zero;
 
     public void SetList(List<GameObject> itemList)
     {
@@ -26,7 +27,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void SpawnItemAtPoint(Transform spawnPoint)
     {
-        if (Random.Range(0, 2) != 0)
+        if (Random.Range(0, 3) != 0)
         {
             return;
         }
@@ -36,7 +37,9 @@ public class ItemSpawner : MonoBehaviour
             GameObject itemToSpawn = items[Random.Range(0, items.Count)];
             Debug.Log($"Spawning {itemToSpawn.name}");
 
-            Instantiate(itemToSpawn, spawnPoint.position, spawnPoint.rotation);
+            Vector3 spawnPos = spawnPoint.position + spawnOffset;
+
+            Instantiate(itemToSpawn, spawnPos, spawnPoint.rotation);
         }
     }
 
