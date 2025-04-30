@@ -386,6 +386,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EntryPoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3598107383188687906, guid: dddabdc6edaede64d99a42412e5f63fa,
+        type: 3}
+      propertyPath: doorAble
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9089929016068052094, guid: dddabdc6edaede64d99a42412e5f63fa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -459,6 +464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EntryPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598107383188687906, guid: dddabdc6edaede64d99a42412e5f63fa,
+        type: 3}
+      propertyPath: doorAble
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9089929016068052094, guid: dddabdc6edaede64d99a42412e5f63fa,
         type: 3}
