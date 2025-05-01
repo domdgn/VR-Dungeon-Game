@@ -1,34 +1,84 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
-
+using System.Collections;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float remainingTime = 60f ;
+    [SerializeField] float timerLength;
 
-    void Start()
+    private float remainingTime;
+    private Coroutine timerCoroutine;
+
+    public GameManager gameMgr;
+    public UnityEvent onTimerEnd = new UnityEvent();
+
+    private void Awake()
     {
+        remainingTime = timerLength;
 
+        if (gameMgr != null)
+        {
+            gameMgr.onGameBegin.AddListener(BeginTimer);
+        }
+        else
+        {
+            Debug.LogError("Game Manager not assigned to Timer!");
+        }
+
+        UpdateTimerDisplay();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateTimerDisplay()
     {
-        if (remainingTime > 0 )
+        int minutes = Mathf.FloorToInt(remainingTime / 60);
+        int seconds = Mathf.FloorToInt(remainingTime % 60);
+        timerText.text = string.Format("{0}:{1:00}", minutes, seconds);
+    }
+
+    private IEnumerator TimerCountdown()
+    {
+        while (remainingTime > 0)
         {
-            remainingTime -=Time.deltaTime;
+            remainingTime -= Time.deltaTime;
+
+            if (remainingTime < 0)
+                remainingTime = 0;
+
+            UpdateTimerDisplay();
+
+            if (remainingTime <= 0)
+            {
+                onTimerEnd.Invoke();
+                break;
+            }
+
+            yield return null;
         }
-        else if (remainingTime < 0)
+    }
+
+    private void BeginTimer()
+    {
+        if (timerCoroutine != null)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
         }
-        
-        int Minutes = Mathf.FloorToInt(remainingTime / 60);
-        int Seconds = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", Minutes, Seconds);
+
+        remainingTime = timerLength;
+        UpdateTimerDisplay();
+
+        timerCoroutine = StartCoroutine(TimerCountdown());
+    }
+
+    public void SetTimerLength(float length)
+    {
+        timerLength = length;
+    }
+
+    public float GetRemainingTime()
+    {
+        return remainingTime;
     }
 }
