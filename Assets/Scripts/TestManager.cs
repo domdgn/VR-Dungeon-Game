@@ -11,24 +11,11 @@ public class TestManager : MonoBehaviour
     {
         if (mgr != null)
         {
-            mgr.onGameBegin.AddListener(DisableObjects);
             mgr.onGameOver.AddListener(EnableObjects);
         }
         else
         {
             Debug.LogError("DungeonGenerator not assigned to TestManager!");
-        }
-    }
-
-    public void DisableObjects()
-    {
-        Debug.Log("Disabling objects during dungeon generation");
-        foreach (GameObject obj in disableWhileGenerating)
-        {
-            if (obj != null)
-            {
-                obj.SetActive(false);
-            }
         }
     }
 
@@ -47,7 +34,6 @@ public class TestManager : MonoBehaviour
     {
         if (mgr != null)
         {
-            mgr.onGameBegin.RemoveListener(DisableObjects);
             mgr.onGameOver.RemoveListener(EnableObjects);
         }
     }

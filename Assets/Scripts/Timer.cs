@@ -21,6 +21,7 @@ public class Timer : MonoBehaviour
         if (gameMgr != null)
         {
             gameMgr.onGameBegin.AddListener(BeginTimer);
+            gameMgr.onGameOver.AddListener(ResetTimer);
         }
         else
         {
@@ -66,8 +67,7 @@ public class Timer : MonoBehaviour
             timerCoroutine = null;
         }
 
-        remainingTime = timerLength;
-        UpdateTimerDisplay();
+        ResetTimer();
 
         timerCoroutine = StartCoroutine(TimerCountdown());
     }
@@ -80,5 +80,11 @@ public class Timer : MonoBehaviour
     public float GetRemainingTime()
     {
         return remainingTime;
+    }
+
+    private void ResetTimer()
+    {
+        remainingTime = timerLength;
+        UpdateTimerDisplay();
     }
 }
