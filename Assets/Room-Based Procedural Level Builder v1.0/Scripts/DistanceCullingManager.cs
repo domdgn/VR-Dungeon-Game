@@ -57,11 +57,11 @@ public class DistanceCullingManager : MonoBehaviour
 
                 bool shouldBeVisible = withinDistance && isVisible;
 
-                foreach (var r in renderers)
-                {
-                    if (r.enabled != shouldBeVisible)
-                        r.enabled = shouldBeVisible;
-                }
+                //foreach (var r in renderers)
+                //{
+                //    if (r.enabled != shouldBeVisible)
+                //        r.enabled = shouldBeVisible;
+                //}
 
                 var lights = obj.GetComponentsInChildren<Light>(true);
                 foreach (var l in lights)

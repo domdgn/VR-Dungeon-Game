@@ -46,21 +46,20 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    public void TriggerItemSpawning()
+    public IEnumerator TriggerItemSpawning()
     {
         Debug.Log("ItemSpawnTriggered");
-
         List<Transform> spawnPointsCopy = new List<Transform>(itemSpawnPoints);
-
         foreach (Transform transform in spawnPointsCopy)
         {
             Debug.Log("Attempting item spawn");
             SpawnItemAtPoint(transform);
             itemSpawnPoints.Remove(transform);
             Destroy(transform.gameObject);
+            yield return null;
         }
-
         itemSpawnPoints.Clear();
+        yield return null;
     }
 
 

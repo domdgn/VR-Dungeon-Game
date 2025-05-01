@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProceduralDungeon
 {
@@ -16,6 +17,13 @@ namespace ProceduralDungeon
         [Tooltip("Each level is its own Scriptable Object and has its own generation settings and prefabs.\nRefer to the Demo Level SO for more info.")]
         public List<LevelSO> levels = new List<LevelSO>();
 
+        [Header("Events")]
+        [Tooltip("Invoked when dungeon generation starts")]
+        public UnityEvent onGenerationStarted = new UnityEvent();
+
+        [Tooltip("Invoked when dungeon generation completes")]
+        public UnityEvent onGenerationCompleted = new UnityEvent();
+
         private LevelSO levelData;
         private float hallwayChance;
         private float sequentialHallwayChanceMulti;
@@ -26,6 +34,8 @@ namespace ProceduralDungeon
         private Transform dungeonParent;
         private int maxRooms;
         private ItemSpawner itemSpawner;
+
+        public bool activelyGenerating = false;
 
         private void Awake()
         {
@@ -62,17 +72,25 @@ namespace ProceduralDungeon
         }
         public void ResetDungeon()
         {
-            ClearLevel();
-            itemSpawner.DeleteAllItems();
-
-            if (levels.Count > 0)
+            if (activelyGenerating == false)
             {
-                levelData = levels[Random.Range(0, levels.Count)];
-                Debug.Log(levelData.levelName + "level selected");
-            }
+                activelyGenerating = true;
+                onGenerationStarted.Invoke();
+                //Debug.Log(activelyGenerating);
 
-            SetUpLevelData(levelData);
-            StartCoroutine(GenerateDungeon());
+                ClearLevel();
+                itemSpawner.DeleteAllItems();
+
+                if (levels.Count > 0)
+                {
+                    levelData = levels[Random.Range(0, levels.Count)];
+                    Debug.Log(levelData.levelName + "level selected");
+                }
+
+                SetUpLevelData(levelData);
+                StartCoroutine(GenerateDungeon());
+            }
+            else Debug.LogWarning("Dungeon is already generating!");
         }
 
         void SetUpLevelData(LevelSO levelData)
@@ -98,7 +116,12 @@ namespace ProceduralDungeon
             }
 
             SealOpenDoors();
-            itemSpawner.TriggerItemSpawning();
+            yield return StartCoroutine(itemSpawner.TriggerItemSpawning());
+
+            yield return new WaitForSeconds(2f);
+            activelyGenerating = false;
+            onGenerationCompleted.Invoke();
+            //Debug.Log(activelyGenerating);
         }
 
 
