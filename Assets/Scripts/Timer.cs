@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float timerLength;
+    [SerializeField] float timerLength = 180f;
 
     private float remainingTime;
     private Coroutine timerCoroutine;

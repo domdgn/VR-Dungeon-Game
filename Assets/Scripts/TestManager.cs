@@ -5,14 +5,14 @@ using UnityEngine;
 public class TestManager : MonoBehaviour
 {
     public List<GameObject> disableWhileGenerating = new List<GameObject>();
-    public DungeonGenerator generator;
+    public GameManager mgr;
 
     private void Start()
     {
-        if (generator != null)
+        if (mgr != null)
         {
-            generator.onGenerationStarted.AddListener(DisableObjects);
-            generator.onGenerationCompleted.AddListener(EnableObjects);
+            mgr.onGameBegin.AddListener(DisableObjects);
+            mgr.onGameOver.AddListener(EnableObjects);
         }
         else
         {
@@ -45,10 +45,10 @@ public class TestManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (generator != null)
+        if (mgr != null)
         {
-            generator.onGenerationStarted.RemoveListener(DisableObjects);
-            generator.onGenerationCompleted.RemoveListener(EnableObjects);
+            mgr.onGameBegin.RemoveListener(DisableObjects);
+            mgr.onGameOver.RemoveListener(EnableObjects);
         }
     }
 }

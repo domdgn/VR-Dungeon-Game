@@ -118,7 +118,7 @@ namespace ProceduralDungeon
             SealOpenDoors();
             yield return StartCoroutine(itemSpawner.TriggerItemSpawning());
 
-            yield return new WaitForSeconds(2f);
+            //yield return new WaitForSeconds(2f);
             activelyGenerating = false;
             onGenerationCompleted.Invoke();
             //Debug.Log(activelyGenerating);
