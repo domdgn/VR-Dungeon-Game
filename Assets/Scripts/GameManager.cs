@@ -2,14 +2,16 @@ using ProceduralDungeon;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public DungeonGenerator generator;
-
+    public StartTrigger startTrig;
     private Timer timer;
     private bool isDungeonGenerating = false;
     private bool isGameActive = false;
+    private bool playerAtStart = true;
 
     public UnityEvent onGameBegin = new UnityEvent();
     public UnityEvent onGameOver = new UnityEvent();
@@ -32,13 +34,23 @@ public class GameManager : MonoBehaviour
         }
 
         timer = GetComponent<Timer>();
-        if (timer != null)
+        if (timer == null)
         {
-            timer.onTimerEnd.AddListener(TimerRunOut);
+            Debug.LogError("Timer component not found on GameManager!");
         }
         else
         {
-            Debug.LogError("Timer component not found on GameManager object!");
+            timer.onTimerEnd.AddListener(TimerRunOut);
+        }
+
+        if (startTrig != null)
+        {
+            startTrig.onStartTriggerEnter.AddListener(OnStartEnter);
+            startTrig.onStartTriggerExit.AddListener(OnStartExit);
+        }
+        else
+        {
+            Debug.LogError("StartTrigger reference is missing!");
         }
     }
 
@@ -54,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (!isGameActive)
+        if (!isGameActive && !isDungeonGenerating)
         {
             StopAllCoroutines();
             StartCoroutine(StartGameCoroutine());
@@ -63,39 +75,74 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator StartGameCoroutine()
     {
-        if (generator != null)
+        while (isDungeonGenerating)
         {
-            generator.ResetDungeon();
-
-            while (isDungeonGenerating)
-            {
-                yield return null;
-            }
+            yield return null;
         }
 
         isGameActive = true;
+
+        if (timer != null)
+        {
+            timer.StartTimer();
+        }
+
         onGameBegin.Invoke();
+        Debug.Log("Game started!");
     }
 
     private void TimerRunOut()
     {
         if (isGameActive)
         {
-            EndGame();
+            StartCoroutine(EndGame());
         }
     }
 
-    public void EndGame()
+    private void OnStartEnter()
+    {
+        playerAtStart = true;
+    }
+
+    private void OnStartExit()
+    {
+        playerAtStart = false;
+    }
+
+    public IEnumerator EndGame()
     {
         if (isGameActive)
         {
             isGameActive = false;
             onGameOver.Invoke();
+
+            Debug.Log("Game over!");
+
+            if (generator != null && playerAtStart)
+            {
+                timer.ResetTimer();
+                generator.ResetDungeon();
+
+                while (isDungeonGenerating)
+                {
+                    yield return null;
+                }
+            }
+
+            //else if (!playerAtStart)
+            //{
+            //    SceneManager.LoadScene(0);
+            //}
         }
     }
 
     public bool IsGameActive()
     {
         return isGameActive;
+    }
+
+    public bool IsDungeonGenerating()
+    {
+        return isDungeonGenerating;
     }
 }

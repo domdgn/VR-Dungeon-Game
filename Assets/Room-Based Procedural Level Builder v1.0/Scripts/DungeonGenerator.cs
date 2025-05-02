@@ -47,7 +47,7 @@ namespace ProceduralDungeon
                 Debug.LogError("ItemSpawner not found in scene!");
             }
 
-            //ResetDungeon(); // Remove if you don't want dungeons to generate on Awake()
+            ResetDungeon(); // Remove if you don't want dungeons to generate on Awake()
         }
 
         public void ClearLevel()
