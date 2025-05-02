@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
+    [SerializeField] private Transform spawnedItemsParent;
+
     private List<GameObject> items = new List<GameObject>();
     private List<Transform> itemSpawnPoints = new List<Transform>();
     public Vector3 spawnOffset = Vector3.zero;
@@ -30,20 +32,19 @@ public class ItemSpawner : MonoBehaviour
     private void SpawnItemAtPoint(Transform spawnPoint)
     {
         if (Random.Range(0, 3) != 0)
-        {
             return;
-        }
 
-        else
-        {
-            GameObject itemToSpawn = items[Random.Range(0, items.Count)];
-            Debug.Log($"Spawning {itemToSpawn.name}");
+        GameObject itemToSpawn = items[Random.Range(0, items.Count)];
+        Debug.Log($"Spawning {itemToSpawn.name}");
 
-            Vector3 spawnPos = spawnPoint.position + spawnOffset;
+        Vector3 spawnPos = spawnPoint.position + spawnOffset;
+        GameObject spawnedItem = Instantiate(itemToSpawn, spawnPos, spawnPoint.rotation);
 
-            GameObject spawnedItem = Instantiate(itemToSpawn, spawnPos, spawnPoint.rotation);
-            spawnedItems.Add(spawnedItem);
-        }
+        // Parent the spawned item
+        if (spawnedItemsParent != null)
+            spawnedItem.transform.SetParent(spawnedItemsParent);
+
+        spawnedItems.Add(spawnedItem);
     }
 
     public IEnumerator TriggerItemSpawning()

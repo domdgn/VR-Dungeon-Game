@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8008483463221457487}
   - component: {fileID: 3944262488326569095}
   - component: {fileID: 133626127933757840}
-  - component: {fileID: 1659066399962261000}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,6 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
   timerLength: 0
+  warningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  criticalColor: {r: 1, g: 0, b: 0, a: 1}
+  warningThreshold: 30
+  criticalThreshold: 10
   gameMgr: {fileID: 133626127933757840}
   onTimerEnd:
     m_PersistentCalls:
@@ -65,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 0}
+  startTrig: {fileID: 0}
   onGameBegin:
     m_PersistentCalls:
       m_Calls:
@@ -95,17 +99,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &1659066399962261000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591764039505861236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf06be993f1c0843924f868afc4ebe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disableWhileGenerating: []
-  generator: {fileID: 0}

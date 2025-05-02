@@ -43,4 +43,9 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             Debug.Log("Object landed safely. No damage taken.");
         }
     }
+
+    public float GetValue()
+    {
+        return ItemInformation.value;
+    }
 }
