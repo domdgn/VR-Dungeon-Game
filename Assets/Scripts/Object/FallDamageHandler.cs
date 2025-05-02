@@ -54,9 +54,14 @@ public class FallDamagehandler : MonoBehaviour
     void OnCollisionExit(Collision collision)
     {
         // When the object leaves the ground, it's considered falling again
-        if (collision.gameObject.CompareTag("Ground") && collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+
+        if(collision.gameObject.CompareTag("wall"))
+        {
+            onWall = false;
         }
     } 
 }
