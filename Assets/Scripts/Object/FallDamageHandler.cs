@@ -59,7 +59,7 @@ public class FallDamagehandler : MonoBehaviour
             isGrounded = false;
         }
 
-        if(collision.gameObject.CompareTag("wall"))
+        if(collision.gameObject.CompareTag("Wall"))
         {
             onWall = false;
         }
