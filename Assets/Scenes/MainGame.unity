@@ -219,6 +219,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5dfad736f3eef2540a200a751e42ef35,
         type: 2}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1124322822}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960959499948009452, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+        type: 3}
+      propertyPath: onGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -345,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1124322823
 MonoBehaviour:
   m_ObjectHideFlags: 0
