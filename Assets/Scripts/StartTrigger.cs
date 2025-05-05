@@ -8,6 +8,8 @@ public class StartTrigger : MonoBehaviour
     public GameObjectEvent onTreasureTriggerEnter = new GameObjectEvent();
     public GameObjectEvent onTreasureTriggerExit = new GameObjectEvent();
 
+    [SerializeField] ItemSpawner itemSpawner;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -20,6 +22,7 @@ public class StartTrigger : MonoBehaviour
         {
             Debug.Log("treasure entered trigger");
             onTreasureTriggerEnter.Invoke(other.gameObject);
+            itemSpawner.RemoveItemFromList(other.gameObject);
         }
     }
 
@@ -35,6 +38,7 @@ public class StartTrigger : MonoBehaviour
         {
             Debug.Log("treasure exited trigger");
             onTreasureTriggerExit.Invoke(other.gameObject);
+            itemSpawner.AddItemToList(other.gameObject);
         }
     }
 }

@@ -72,4 +72,16 @@ public class ItemSpawner : MonoBehaviour
         }
         spawnedItems.Clear();
     }
+
+    public void RemoveItemFromList(GameObject item)
+    {
+        spawnedItems.Remove(item);
+        Debug.Log($"{item.name} removed from spawned items list.");
+    }
+
+    public void AddItemToList(GameObject item)
+    {
+        spawnedItems.Add(item);
+        Debug.Log($"{item.name} added to spawned items list.");
+    }
 }

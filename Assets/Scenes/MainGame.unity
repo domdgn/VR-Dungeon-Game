@@ -300,6 +300,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd93488db370094491f90e7e314d48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &279602212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4780730295573191922, guid: f4ab679343a78ca41a53b282cc4e2f7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 279602207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279602208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333a4c5134276bd44b29ee3a533c82b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &473881105
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +800,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 6895032776554746209, guid: d5efde166617a3543980b8966ac30c24,
+        type: 3}
+      propertyPath: itemSpawner
+      value: 
+      objectReference: {fileID: 279602212}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
