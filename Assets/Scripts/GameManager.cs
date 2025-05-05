@@ -129,10 +129,10 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            //else if (!playerAtStart)
-            //{
-            //    SceneManager.LoadScene(0);
-            //}
+            else if (!playerAtStart)
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
