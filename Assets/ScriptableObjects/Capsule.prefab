@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5298909261175931516}
   - component: {fileID: 5405834246624020489}
   - component: {fileID: 8527043012358348334}
+  - component: {fileID: 1723081727781510527}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Treasure
@@ -315,3 +316,16 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &1723081727781510527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158357957168189327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97e8f74ba003c141a0bb9f117ba490a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handColliders: []

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 724214605459488233}
   - component: {fileID: 8603528656407434197}
   - component: {fileID: 5792406788382696359}
+  - component: {fileID: 6922227103186701897}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Treasure
@@ -313,3 +314,16 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &6922227103186701897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461818044417763959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97e8f74ba003c141a0bb9f117ba490a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handColliders: []
