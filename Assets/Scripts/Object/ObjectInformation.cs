@@ -34,6 +34,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             Debug.Log($"Object took {damage} fall damage! Health is now {ItemInformation.value}");
             if(ItemInformation.value < 1)
             {
+                Destroy(gameObject);
                 Debug.Log("Break Me!!");
             }
         }
