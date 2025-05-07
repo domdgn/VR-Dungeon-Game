@@ -61,7 +61,7 @@ public class MoneyManager : MonoBehaviour
             }
         }
 
-        moneyText.text = $"£{totalValueRecovered:N2}";
+        moneyText.text = $"ï¿½{totalValueRecovered:N2}";
 
         if (itemCountText != null)
         {

@@ -8,7 +8,6 @@ public class ScriptableObjectInformation : ScriptableObject
 {
    public string objectName; // Objects Name 
    public float mass; // weight of the object
-   public float value; // value of object which will act as health too
    public float safeFallVelocity; // Hieght for the item to take damage
    public float damageMultiplier; // Set the multiplier for damage  
    public GameObject ObjectPrefab; // Prefab for the objcet
@@ -16,7 +15,6 @@ public class ScriptableObjectInformation : ScriptableObject
    public void Randomise() // used to randomise the values of the items at the begining of the level
    {
       mass = Random.Range(20, 100);
-      value = Random.Range(40, 1000);
       safeFallVelocity = Random.Range(1,5);
       damageMultiplier =  Random.Range(1,15);
    }

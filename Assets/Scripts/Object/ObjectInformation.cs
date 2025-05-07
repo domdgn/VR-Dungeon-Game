@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ObjectInformation : MonoBehaviour, IDamageable
 {
-    [SerializeField] private ScriptableObjectInformation ItemInformation; // ScriptableObject that stores object data (e.g. name, health)
+    [SerializeField] private ScriptableObjectInformation ItemInformation; // ScriptableObject that stores object data (e.g. name)
+    public float value; // value of object which will act as health too
     
     private void Start()
     {
@@ -12,10 +13,16 @@ public class ObjectInformation : MonoBehaviour, IDamageable
         ItemInformation.Randomise();
         ItemInformation.Createprefab();
 
+        Value();
+
         // Debug output to confirm values
         Debug.Log(ItemInformation.objectName);
-        Debug.Log(ItemInformation.value);
 
+    }
+
+    void Value()
+    {
+        value = Random.Range(40, 1000);
     }
 
     // This method is required by the IFallDamageable interface
@@ -28,11 +35,11 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             float damage = (impactVelocity - ItemInformation.safeFallVelocity) * ItemInformation.damageMultiplier;
 
             // Subtract damage from the object's "health" or "value"
-            ItemInformation.value -= damage;
+            value -= damage;
 
             // Output the damage taken and remaining value
-            Debug.Log($"Object took {damage} fall damage! Health is now {ItemInformation.value}");
-            if(ItemInformation.value < 1)
+            Debug.Log($"Object took {damage} fall damage! Health is now {value}");
+            if(value < 1)
             {
                 Destroy(gameObject);
                 Debug.Log("Break Me!!");
@@ -45,8 +52,8 @@ public class ObjectInformation : MonoBehaviour, IDamageable
         }
     }
 
-    public float GetValue()
+     public float GetValue()
     {
-        return ItemInformation.value;
+        return value;
     }
 }
