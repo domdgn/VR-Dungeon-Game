@@ -70,6 +70,7 @@ public class MoneyManager : MonoBehaviour
             }
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         moneyText.text = $"�{totalValueRecovered:N2}";
 
@@ -77,6 +78,8 @@ public class MoneyManager : MonoBehaviour
         {
             itemCountText.text = $"Treasures: {collectedItems.Count}";
         }
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     }
