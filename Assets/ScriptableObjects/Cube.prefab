@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemInformation: {fileID: 11400000, guid: 58fc02ca267409d4ab5eeb3d72fa5a53, type: 2}
+  value: 0
 --- !u!114 &5792406788382696359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,4 +327,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97e8f74ba003c141a0bb9f117ba490a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handColliders: []
+  heldLayerName: GrabbedObjects
+  defaultLayerName: Default

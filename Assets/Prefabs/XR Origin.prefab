@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 7093163770309524039}
   - component: {fileID: 1212913750646999143}
   - component: {fileID: 6855872692015452226}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CollisionColliderL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
 --- !u!54 &6855872692015452226
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 8947640517449434000}
   - component: {fileID: 5099681979056972418}
   - component: {fileID: 191587450402181059}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CollisionColliderR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +870,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d0c255d07fd68f14b94e55d388e7e6bb, type: 3}
 --- !u!1 &2799477970807344690
