@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
 
             else if (!playerAtStart)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene("FailMenu");
             }
         }
     }

@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/MainGame.unity
+    path: Assets/Scenes/Main Scenes/MainGame.unity
     guid: a555ca58bdac0b7478edbd4ae0c70c75
+  - enabled: 1
+    path: Assets/Scenes/Main Scenes/FailMenu.unity
+    guid: 14a1ecc030d043e459e29d210b48fa79
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e3f8c14422c1da04bb01586f6e18c0f9,
       type: 2}
