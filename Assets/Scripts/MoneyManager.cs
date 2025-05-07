@@ -1,6 +1,4 @@
-using ProceduralDungeon;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 public class MoneyManager : MonoBehaviour
 {
@@ -69,19 +67,6 @@ public class MoneyManager : MonoBehaviour
                 }
             }
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-        moneyText.text = $"�{totalValueRecovered:N2}";
-
-        if (itemCountText != null)
-        {
-            itemCountText.text = $"Treasures: {collectedItems.Count}";
-        }
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
     public float GetValueRecovered()
     {
