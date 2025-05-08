@@ -1473,6 +1473,21 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 6007061376927955199}
+    - target: {fileID: 3944262488326569095, guid: e2b541f0955d1be46b7387d22250554b,
+        type: 3}
+      propertyPath: timerLength
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3944262488326569095, guid: e2b541f0955d1be46b7387d22250554b,
+        type: 3}
+      propertyPath: warningThreshold
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3944262488326569095, guid: e2b541f0955d1be46b7387d22250554b,
+        type: 3}
+      propertyPath: criticalThreshold
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6591764039505861236, guid: e2b541f0955d1be46b7387d22250554b,
         type: 3}
       propertyPath: m_Name

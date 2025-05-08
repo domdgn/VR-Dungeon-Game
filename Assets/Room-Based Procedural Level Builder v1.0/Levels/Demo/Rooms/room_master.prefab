@@ -79,7 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76bfd96a1db02d47af597a53d06ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
   activationDistance: 20
 --- !u!1 &2807744591379459073
 GameObject:
