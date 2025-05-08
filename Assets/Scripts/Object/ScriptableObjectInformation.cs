@@ -24,8 +24,4 @@ public class ScriptableObjectInformation : ScriptableObject
       Debug.Log("Hello"); // creates the prefab into the scene
    }
 
-   void Start()
-   {
-       Instantiate(ObjectPrefab);
-   }
 }

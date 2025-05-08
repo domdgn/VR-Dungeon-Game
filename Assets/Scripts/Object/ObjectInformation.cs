@@ -15,6 +15,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
         // Initialize object with randomized values from the ScriptableObject
         ItemInformation.Randomise();
         ItemInformation.Createprefab();
+
         // Debug output to confirm values
         Debug.Log(ItemInformation.objectName);
 
@@ -38,7 +39,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             // Calculate how much damage to apply
             float damage = (impactVelocity - ItemInformation.safeFallVelocity) * ItemInformation.damageMultiplier;
 
-            // Subtract damage from the object's "health" or "value"
+            // Subtract damage from the object's "health"/"value"
             value -= damage;
 
             StartCoroutine(Flash());
@@ -47,6 +48,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             Debug.Log($"Object took {damage} fall damage! Health is now {value}");
             if(value < 1)
             {
+                //Destroy Object if Value is below 1 
                 Destroy(gameObject);
                 Debug.Log("Break Me!!");
             }
@@ -58,6 +60,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
         }
     }
 
+    // This Coroutine is to add a visual for the damage 
     IEnumerator Flash()
     {
         meshRenderer.material.color = Color.green;

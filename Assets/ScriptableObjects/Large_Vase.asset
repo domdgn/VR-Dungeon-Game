@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Large_Vase
   m_EditorClassIdentifier: 
   objectName: Large Vase
-  mass: 86
-  value: 598.3634
-  safeFallVelocity: 3
-  damageMultiplier: 13
-  ObjectPrefab: {fileID: 2158357957168189327, guid: 171daeac62ac73547b7911a1069ae410,
-    type: 3}
+  mass: 25
+  safeFallVelocity: 2
+  damageMultiplier: 1
+  ObjectPrefab: {fileID: 1647118318, guid: 4dd5b096b1447b2458aaf237d9bc1520, type: 3}

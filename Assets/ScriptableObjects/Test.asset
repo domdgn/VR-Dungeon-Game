@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0a1c8878840d9d42861681f429693ba, type: 3}
-  m_Name: Small_Vase
+  m_Name: Test
   m_EditorClassIdentifier: 
-  objectName: ' China Vase'
-  mass: 92
+  objectName: Bottle_3
+  mass: 39
   safeFallVelocity: 3
-  damageMultiplier: 9
-  ObjectPrefab: {fileID: 1107664363, guid: fdc5f76cb8f930243ab28c2a22aa3379, type: 3}
+  damageMultiplier: 10
+  ObjectPrefab: {fileID: 1891320786, guid: a1f3f1e47ecc6d848bf23ac78e549112, type: 3}
