@@ -63,7 +63,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
     // This Coroutine is to add a visual for the damage 
     IEnumerator Flash()
     {
-        meshRenderer.material.color = Color.green;
+        meshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(flashTime);
         meshRenderer.material.color = origColor;
     }
