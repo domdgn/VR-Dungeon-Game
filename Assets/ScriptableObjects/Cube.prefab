@@ -142,8 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemInformation: {fileID: 11400000, guid: 58fc02ca267409d4ab5eeb3d72fa5a53, type: 2}
-  damageUIprefab: {fileID: 0}
-  uiSpawnPoint: {fileID: 0}
+  damageUIprefab: {fileID: 3866806443294763596, guid: 3b32e9a1b2ce5bf43a77c1ee7508c930,
+    type: 3}
+  uiSpawnPoint: {fileID: 2670397834587746469}
   value: 0
 --- !u!114 &5792406788382696359
 MonoBehaviour:
