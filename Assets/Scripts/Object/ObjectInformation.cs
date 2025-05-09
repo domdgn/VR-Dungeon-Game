@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ObjectInformation : MonoBehaviour, IDamageable
 {
     [SerializeField] private ScriptableObjectInformation ItemInformation; // ScriptableObject that stores object data (e.g. name)
+    public GameObject damageUIprefab;
+    public Transform uiSpawnPoint;
     public float value; // value of object which will act as health too
     MeshRenderer meshRenderer;
     Color origColor;
@@ -43,6 +46,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             value -= damage;
 
             StartCoroutine(Flash());
+            ShowDamageUI(damage);
 
             // Output the damage taken and remaining value
             Debug.Log($"Object took {damage} fall damage! Health is now {value}");
@@ -68,6 +72,15 @@ public class ObjectInformation : MonoBehaviour, IDamageable
         meshRenderer.material.color = origColor;
     }
 
+    void ShowDamageUI(float damage)
+    {
+        if (damageUIprefab != null)
+        {
+            Vector3 spawnPos = uiSpawnPoint ? uiSpawnPoint.position : transform.position + Vector3.up;
+            GameObject ui = Instantiate(damageUIprefab, spawnPos, Quaternion.identity);
+            ui.GetComponentInChildren<TextMeshProUGUI>().text = "-" + damage.ToString("0");
+        }
+    }
      public float GetValue()
     {
         return value;
