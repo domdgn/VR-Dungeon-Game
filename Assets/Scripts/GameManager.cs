@@ -93,10 +93,7 @@ public class GameManager : MonoBehaviour
 
     private void TimerRunOut()
     {
-        if (isGameActive)
-        {
-            StartCoroutine(EndGame());
-        }
+        EndGame();
     }
 
     private void OnStartEnter()
@@ -109,7 +106,15 @@ public class GameManager : MonoBehaviour
         playerAtStart = false;
     }
 
-    public IEnumerator EndGame()
+    public void EndGame()
+    {
+        if (isGameActive)
+        {
+            StartCoroutine(EndGameCoroutine());
+        }
+    }
+
+    public IEnumerator EndGameCoroutine()
     {
         if (isGameActive)
         {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,5 +28,20 @@ public class UIManager : MonoBehaviour
         {
             itemCountText.text = $"({totalItemCount} items)";
         }
+    }
+
+    public void ChangeSceneToGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void ChangeSceneToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
