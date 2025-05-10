@@ -69,6 +69,13 @@ public class DistanceCullingManager : MonoBehaviour
                     if (l.gameObject.activeSelf != shouldBeVisible)
                         l.gameObject.SetActive(shouldBeVisible);
                 }
+
+                var colliders = obj.GetComponentsInChildren<MeshCollider>(true);
+                foreach (var c in colliders)
+                {
+                    if (c.enabled != shouldBeVisible)
+                        c.enabled = shouldBeVisible;
+                }
             }
 
             yield return new WaitForSeconds(checkInterval);
