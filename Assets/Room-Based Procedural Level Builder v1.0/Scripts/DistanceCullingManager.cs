@@ -73,7 +73,7 @@ public class DistanceCullingManager : MonoBehaviour
                 var colliders = obj.GetComponentsInChildren<MeshCollider>(true);
                 foreach (var c in colliders)
                 {
-                    if (c.enabled != shouldBeVisible)
+                    if (c.enabled != shouldBeVisible && c.gameObject.CompareTag("Wall"))
                         c.enabled = shouldBeVisible;
                 }
             }

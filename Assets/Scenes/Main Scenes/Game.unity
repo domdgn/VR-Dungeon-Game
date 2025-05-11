@@ -1362,10 +1362,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4578969825077371102, guid: d5efde166617a3543980b8966ac30c24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 355c9cebb6410f34a855153a01959412, type: 2}
     - target: {fileID: 5507085412020659082, guid: d5efde166617a3543980b8966ac30c24,
         type: 3}
       propertyPath: m_Name
       value: StartRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808784760540601406, guid: d5efde166617a3543980b8966ac30c24,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.178
       objectReference: {fileID: 0}
     - target: {fileID: 6895032776554746209, guid: d5efde166617a3543980b8966ac30c24,
         type: 3}
@@ -1382,6 +1392,11 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 15.14
       objectReference: {fileID: 0}
+    - target: {fileID: 7724765752010953728, guid: d5efde166617a3543980b8966ac30c24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 355c9cebb6410f34a855153a01959412, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
