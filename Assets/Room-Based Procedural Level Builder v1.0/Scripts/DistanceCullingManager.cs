@@ -32,7 +32,6 @@ public class DistanceCullingManager : MonoBehaviour
     {
         while (true)
         {
-            Plane[] camPlanes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
             foreach (var obj in cullableObjects)
             {
                 if (obj == null) continue;
@@ -40,46 +39,26 @@ public class DistanceCullingManager : MonoBehaviour
                 float distance = Vector3.Distance(obj.transform.position, player.position);
                 bool withinDistance = distance < obj.activationDistance;
 
-                var renderers = obj.GetComponentsInChildren<Renderer>(true);
-                bool isVisible = false;
+                // Lights and colliders obey the distance rule for performance
+                bool shouldEnableComponents = withinDistance;
 
-                foreach (var r in renderers)
-                {
-                    if (r != null && GeometryUtility.TestPlanesAABB(camPlanes, r.bounds))
-                    {
-                        isVisible = true;
-                        break;
-                    }
-                }
-
-                // Renderers should be visible if they're in view of the camera
-                foreach (var r in renderers)
-                {
-                    if (r != null)
-                    {
-                        bool shouldRender = isVisible;
-                        if (r.enabled != shouldRender)
-                            r.enabled = shouldRender;
-                    }
-                }
-
-                // Lights and colliders still obey the distance rule for performance
-                bool shouldEnablePhysics = withinDistance;
-
+                // Handle lights
                 var lights = obj.GetComponentsInChildren<Light>(true);
                 foreach (var l in lights)
                 {
-                    if (l != null && l.gameObject.activeSelf != shouldEnablePhysics)
-                        l.gameObject.SetActive(shouldEnablePhysics);
+                    if (l != null && l.gameObject.activeSelf != shouldEnableComponents)
+                        l.gameObject.SetActive(shouldEnableComponents);
                 }
 
-                var colliders = obj.GetComponentsInChildren<MeshCollider>(true);
+                // Handle colliders
+                var colliders = obj.GetComponentsInChildren<BoxCollider>(true);
                 foreach (var c in colliders)
                 {
-                    if (c != null && c.enabled != shouldEnablePhysics && c.gameObject.CompareTag("Wall"))
-                        c.enabled = shouldEnablePhysics;
+                    if (c != null && c.enabled != shouldEnableComponents && c.gameObject.CompareTag("Wall"))
+                        c.enabled = shouldEnableComponents;
                 }
             }
+
             yield return new WaitForSeconds(checkInterval);
         }
     }

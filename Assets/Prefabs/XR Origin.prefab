@@ -4503,7 +4503,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.16981131, g: 0.101947546, b: 0.07609469, a: 1}
+  m_BackGroundColor: {r: 0.18431373, g: 0.09019608, b: 0.039215688, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4720,8 +4720,8 @@ MonoBehaviour:
   occluderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  raysPerObject: 20
-  dynamicUpdateInterval: 0.5
+  raysPerObject: 10
+  dynamicUpdateInterval: 0.25
 --- !u!1 &7170163496879639029
 GameObject:
   m_ObjectHideFlags: 0
