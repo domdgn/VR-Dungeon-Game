@@ -5,7 +5,6 @@ using UnityEngine;
 public class DistanceCullingManager : MonoBehaviour
 {
     public static DistanceCullingManager Instance { get; private set; }
-
     public Transform player;
     public List<CullableObject> cullableObjects = new List<CullableObject>();
     public float checkInterval = 0.5f;
@@ -17,7 +16,6 @@ public class DistanceCullingManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
     }
 
@@ -27,15 +25,14 @@ public class DistanceCullingManager : MonoBehaviour
         {
             player = Camera.main.transform;
         }
-
         StartCoroutine(CheckDistances());
     }
+
     IEnumerator CheckDistances()
     {
         while (true)
         {
             Plane[] camPlanes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
-
             foreach (var obj in cullableObjects)
             {
                 if (obj == null) continue;
@@ -55,34 +52,37 @@ public class DistanceCullingManager : MonoBehaviour
                     }
                 }
 
-                bool shouldBeVisible = withinDistance && isVisible;
+                // Renderers should be visible if they're in view of the camera
+                foreach (var r in renderers)
+                {
+                    if (r != null)
+                    {
+                        bool shouldRender = isVisible;
+                        if (r.enabled != shouldRender)
+                            r.enabled = shouldRender;
+                    }
+                }
 
-                //foreach (var r in renderers)
-                //{
-                //    if (r.enabled != shouldBeVisible)
-                //        r.enabled = shouldBeVisible;
-                //}
+                // Lights and colliders still obey the distance rule for performance
+                bool shouldEnablePhysics = withinDistance;
 
                 var lights = obj.GetComponentsInChildren<Light>(true);
                 foreach (var l in lights)
                 {
-                    if (l.gameObject.activeSelf != shouldBeVisible)
-                        l.gameObject.SetActive(shouldBeVisible);
+                    if (l != null && l.gameObject.activeSelf != shouldEnablePhysics)
+                        l.gameObject.SetActive(shouldEnablePhysics);
                 }
 
                 var colliders = obj.GetComponentsInChildren<MeshCollider>(true);
                 foreach (var c in colliders)
                 {
-                    if (c.enabled != shouldBeVisible && c.gameObject.CompareTag("Wall"))
-                        c.enabled = shouldBeVisible;
+                    if (c != null && c.enabled != shouldEnablePhysics && c.gameObject.CompareTag("Wall"))
+                        c.enabled = shouldEnablePhysics;
                 }
             }
-
             yield return new WaitForSeconds(checkInterval);
         }
     }
-
-
 
     public void AddToList(CullableObject self)
     {
