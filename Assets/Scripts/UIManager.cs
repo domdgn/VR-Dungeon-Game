@@ -39,6 +39,10 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+    public void ChangeSceneToWin()
+    {
+        SceneManager.LoadScene("WinMenu");
+    }
 
     public void QuitGame()
     {
