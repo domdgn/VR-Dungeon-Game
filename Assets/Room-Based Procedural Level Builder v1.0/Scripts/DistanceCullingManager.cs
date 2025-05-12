@@ -39,10 +39,8 @@ public class DistanceCullingManager : MonoBehaviour
                 float distance = Vector3.Distance(obj.transform.position, player.position);
                 bool withinDistance = distance < obj.activationDistance;
 
-                // Lights and colliders obey the distance rule for performance
                 bool shouldEnableComponents = withinDistance;
 
-                // Handle lights
                 var lights = obj.GetComponentsInChildren<Light>(true);
                 foreach (var l in lights)
                 {
@@ -50,7 +48,6 @@ public class DistanceCullingManager : MonoBehaviour
                         l.gameObject.SetActive(shouldEnableComponents);
                 }
 
-                // Handle colliders
                 var colliders = obj.GetComponentsInChildren<BoxCollider>(true);
                 foreach (var c in colliders)
                 {

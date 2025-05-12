@@ -4717,11 +4717,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f46ee026ac5b2c47b824021008f6c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occluderLayerMask:
+  cullableLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  occluderLayer:
     serializedVersion: 2
     m_Bits: 1024
-  raysPerObject: 10
-  dynamicUpdateInterval: 0.25
+  objectListUpdateInterval: 1
+  cullingUpdateInterval: 0.1
+  maxCullDistance: 50
 --- !u!1 &7170163496879639029
 GameObject:
   m_ObjectHideFlags: 0
@@ -5520,7 +5524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 954957526495738343}
-  m_MoveSpeed: 3
+  m_MoveSpeed: 2.5
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1

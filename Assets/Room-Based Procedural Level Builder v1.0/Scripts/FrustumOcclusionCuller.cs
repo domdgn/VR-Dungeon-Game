@@ -2,217 +2,232 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Static class that tracks dynamically instantiated renderers
-public static class RendererTracker
+/// <summary>
+/// Simple frustum and occlusion culling script for XR applications
+/// Supports runtime-instantiated objects
+/// </summary>
+public class SimpleXRCulling : MonoBehaviour
 {
-    private static List<Renderer> _newRenderers = new List<Renderer>();
+    [Header("Settings")]
+    [Tooltip("Layer mask for objects to be culled")]
+    public LayerMask cullableLayer;
 
-    // Call this when instantiating new objects with renderers
-    public static void RegisterRenderer(Renderer renderer)
-    {
-        if (renderer != null && !_newRenderers.Contains(renderer))
-        {
-            _newRenderers.Add(renderer);
-        }
-    }
+    [Tooltip("Layer mask for occluder objects")]
+    public LayerMask occluderLayer;
 
-    // Get and clear the list of new renderers
-    public static List<Renderer> GetAndClearNewRenderers()
-    {
-        List<Renderer> result = new List<Renderer>(_newRenderers);
-        _newRenderers.Clear();
-        return result;
-    }
-}
+    [Tooltip("How often to refresh object list (seconds)")]
+    public float objectListUpdateInterval = 1.0f;
 
-[RequireComponent(typeof(Camera))]
-public class FrustumOcclusionCuller : MonoBehaviour
-{
-    // Layer mask for static occluders
-    [SerializeField] private LayerMask occluderLayerMask = -1;
+    [Tooltip("How often to update culling (seconds)")]
+    public float cullingUpdateInterval = 0.1f;
 
-    // How many rays to cast for each object (more rays = more accurate but more expensive)
-    [SerializeField] private int raysPerObject = 5;
+    [Tooltip("Maximum distance for culling (meters)")]
+    public float maxCullDistance = 50f;
 
-    // The camera reference
+    [Header("Exclusions")]
+    [Tooltip("Objects that should never be culled")]
+    public List<GameObject> neverCullObjects = new List<GameObject>();
+
+    // Internal variables
     private Camera _camera;
-
-    // Track all renderers in the scene
-    private List<Renderer> _allRenderers = new List<Renderer>();
-
-    // Frustum planes
     private Plane[] _frustumPlanes = new Plane[6];
+    private HashSet<Renderer> _trackedRenderers = new HashSet<Renderer>();
+    private Dictionary<Renderer, GameObject> _rendererToGameObject = new Dictionary<Renderer, GameObject>();
+    private HashSet<Renderer> _exemptRenderers = new HashSet<Renderer>();
+    private float _objectListTimer = 0f;
+    private float _cullingTimer = 0f;
 
-    // Cache for bounds corners
-    private Vector3[] _cornersCache = new Vector3[8];
-
-    void Start()
+    private void Start()
     {
         _camera = GetComponent<Camera>();
-        RefreshRenderersList();
-    }
-
-    // Call this method when new objects are instantiated
-    public void RefreshRenderersList()
-    {
-        // Remove null renderers (destroyed objects)
-        _allRenderers.RemoveAll(r => r == null);
-
-        // Find all renderers in the scene
-        Renderer[] sceneRenderers = FindObjectsOfType<Renderer>();
-        foreach (Renderer renderer in sceneRenderers)
+        if (_camera == null)
         {
-            // Skip if already in our list or if it's a static occluder
-            if (_allRenderers.Contains(renderer) ||
-                ((1 << renderer.gameObject.layer) & occluderLayerMask.value) != 0)
-                continue;
-
-            _allRenderers.Add(renderer);
+            Debug.LogError("SimpleXRCulling requires a Camera component!");
+            enabled = false;
+            return;
         }
 
-        // Add any new renderers registered through the static tracker
-        List<Renderer> newRenderers = RendererTracker.GetAndClearNewRenderers();
-        foreach (Renderer renderer in newRenderers)
-        {
-            // Skip static occluders
-            if (renderer == null ||
-                _allRenderers.Contains(renderer) ||
-                ((1 << renderer.gameObject.layer) & occluderLayerMask.value) != 0)
-                continue;
+        // Initial object scan
+        FindCullableObjects();
 
-            _allRenderers.Add(renderer);
+        // Add exempt renderers from the never-cull list
+        UpdateExemptRenderers();
+    }
+
+    /// <summary>
+    /// Add a GameObject to the never-cull list at runtime
+    /// </summary>
+    public void AddNeverCullObject(GameObject obj)
+    {
+        if (obj != null && !neverCullObjects.Contains(obj))
+        {
+            neverCullObjects.Add(obj);
+            UpdateExemptRenderers();
         }
     }
 
-    // Update frequency for finding new renderers (every X seconds)
-    [SerializeField] private float dynamicUpdateInterval = 0.5f;
-    private float _nextDynamicUpdate = 0f;
-
-    void Update()
+    /// <summary>
+    /// Remove a GameObject from the never-cull list at runtime
+    /// </summary>
+    public void RemoveNeverCullObject(GameObject obj)
     {
-        // Periodically check for new renderers
-        if (Time.time > _nextDynamicUpdate)
+        if (obj != null && neverCullObjects.Contains(obj))
         {
-            RefreshRenderersList();
-            _nextDynamicUpdate = Time.time + dynamicUpdateInterval;
+            neverCullObjects.Remove(obj);
+            UpdateExemptRenderers();
         }
+    }
 
-        // Calculate the camera's frustum planes
-        _frustumPlanes = GeometryUtility.CalculateFrustumPlanes(_camera);
+    private void UpdateExemptRenderers()
+    {
+        _exemptRenderers.Clear();
 
-        foreach (Renderer renderer in _allRenderers)
+        foreach (GameObject obj in neverCullObjects)
         {
-            if (renderer == null)
-                continue;
+            if (obj == null) continue;
 
-            // First check if the object is within the frustum
-            Bounds bounds = renderer.bounds;
-            if (!GeometryUtility.TestPlanesAABB(_frustumPlanes, bounds))
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(true);
+            foreach (Renderer renderer in renderers)
             {
-                renderer.enabled = false;
-                continue;
-            }
+                _exemptRenderers.Add(renderer);
 
-            // Object is in the frustum, now check if it's occluded
-            if (IsOccluded(bounds))
-            {
-                renderer.enabled = false;
-            }
-            else
-            {
-                renderer.enabled = true;
+                // Make sure exempt objects are visible
+                if (renderer != null)
+                {
+                    renderer.enabled = true;
+                }
             }
         }
     }
 
-    private bool IsOccluded(Bounds bounds)
+    private void Update()
     {
-        // Get the camera position
+        // Update object list periodically to catch runtime instantiated objects
+        _objectListTimer += Time.deltaTime;
+        if (_objectListTimer >= objectListUpdateInterval)
+        {
+            _objectListTimer = 0f;
+            FindCullableObjects();
+            // Periodically update exempt renderers in case child objects change
+            UpdateExemptRenderers();
+        }
+
+        // Update culling
+        _cullingTimer += Time.deltaTime;
+        if (_cullingTimer >= cullingUpdateInterval)
+        {
+            _cullingTimer = 0f;
+            UpdateCulling();
+        }
+    }
+
+    private void FindCullableObjects()
+    {
+        // Find all renderers in the cullable layer
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (((1 << obj.layer) & cullableLayer.value) != 0)
+            {
+                Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(true);
+                foreach (Renderer renderer in renderers)
+                {
+                    if (!_trackedRenderers.Contains(renderer))
+                    {
+                        _trackedRenderers.Add(renderer);
+                        _rendererToGameObject[renderer] = obj;
+                    }
+                }
+            }
+        }
+    }
+
+    private void UpdateCulling()
+    {
+        // Update frustum planes
+        GeometryUtility.CalculateFrustumPlanes(_camera, _frustumPlanes);
         Vector3 cameraPos = _camera.transform.position;
 
-        // Get the bounds center and corners
-        Vector3 center = bounds.center;
-        GetBoundsCorners(bounds, _cornersCache);
-
-        // Check if the center is occluded
-        if (!IsPointOccluded(center, cameraPos))
-            return false;
-
-        // Use center + random points on the bounds for additional checks
-        for (int i = 0; i < raysPerObject - 1; i++)
+        foreach (Renderer renderer in _trackedRenderers)
         {
-            // Get a random point within the bounds
-            Vector3 randomPoint;
-            if (i < 8) // First use corners for better coverage
-                randomPoint = _cornersCache[i];
-            else
-                randomPoint = new Vector3(
-                    Random.Range(bounds.min.x, bounds.max.x),
-                    Random.Range(bounds.min.y, bounds.max.y),
-                    Random.Range(bounds.min.z, bounds.max.z)
-                );
+            if (renderer == null) continue;
 
-            if (!IsPointOccluded(randomPoint, cameraPos))
-                return false;
+            // Skip renderers that should never be culled
+            if (_exemptRenderers.Contains(renderer))
+            {
+                renderer.enabled = true;
+                continue;
+            }
+
+            // Get bounds and check distance
+            Bounds bounds = renderer.bounds;
+            float distance = Vector3.Distance(cameraPos, bounds.center);
+
+            // Skip if too far away
+            if (distance > maxCullDistance)
+            {
+                renderer.enabled = false;
+                continue;
+            }
+
+            // Frustum culling
+            bool inFrustum = GeometryUtility.TestPlanesAABB(_frustumPlanes, bounds);
+            if (!inFrustum)
+            {
+                renderer.enabled = false;
+                continue;
+            }
+
+            // Occlusion culling
+            bool isVisible = !IsOccluded(cameraPos, bounds.center, _rendererToGameObject[renderer]);
+            renderer.enabled = isVisible;
         }
-
-        // All rays were occluded
-        return true;
     }
 
-    private bool IsPointOccluded(Vector3 point, Vector3 cameraPos)
+    private bool IsOccluded(Vector3 fromPos, Vector3 toPos, GameObject self)
     {
-        // Direction from camera to point
-        Vector3 direction = point - cameraPos;
+        Vector3 direction = toPos - fromPos;
         float distance = direction.magnitude;
+        direction.Normalize();
 
-        // Cast a ray from the camera to the point
-        Ray ray = new Ray(cameraPos, direction.normalized);
-
-        // Check if the ray hits anything in the occluder layer before reaching the point
-        if (Physics.Raycast(ray, out RaycastHit hit, distance, occluderLayerMask))
+        RaycastHit hit;
+        if (Physics.Raycast(fromPos, direction, out hit, distance, occluderLayer))
         {
-            // Something is blocking the view
-            return true;
+            // Not occluded if we hit ourselves
+            if (hit.collider.gameObject == self || hit.collider.transform.IsChildOf(self.transform))
+            {
+                return false;
+            }
+            return true; // Occluded by something else
         }
 
-        // Point is visible
-        return false;
+        return false; // Nothing blocking the view
     }
 
-    private void GetBoundsCorners(Bounds bounds, Vector3[] corners)
+    // Remove stale renderers
+    private void CleanupTrackedRenderers()
     {
-        // Bottom face
-        corners[0] = new Vector3(bounds.min.x, bounds.min.y, bounds.min.z);
-        corners[1] = new Vector3(bounds.max.x, bounds.min.y, bounds.min.z);
-        corners[2] = new Vector3(bounds.max.x, bounds.min.y, bounds.max.z);
-        corners[3] = new Vector3(bounds.min.x, bounds.min.y, bounds.max.z);
-
-        // Top face
-        corners[4] = new Vector3(bounds.min.x, bounds.max.y, bounds.min.z);
-        corners[5] = new Vector3(bounds.max.x, bounds.max.y, bounds.min.z);
-        corners[6] = new Vector3(bounds.max.x, bounds.max.y, bounds.max.z);
-        corners[7] = new Vector3(bounds.min.x, bounds.max.y, bounds.max.z);
-    }
-
-    // Visualize the frustum and rays in the editor for debugging
-    private void OnDrawGizmos()
-    {
-        if (!Application.isPlaying || _camera == null)
-            return;
-
-        Gizmos.color = Color.green;
-
-        // Draw frustum
-        Gizmos.DrawRay(_camera.transform.position, _camera.transform.forward * _camera.farClipPlane);
-
-        // Draw some test rays
-        if (_allRenderers.Count > 0 && _allRenderers[0] != null)
+        List<Renderer> toRemove = new List<Renderer>();
+        foreach (Renderer renderer in _trackedRenderers)
         {
-            Gizmos.color = Color.red;
-            Bounds bounds = _allRenderers[0].bounds;
-            Vector3 center = bounds.center;
-            Gizmos.DrawLine(_camera.transform.position, center);
+            if (renderer == null)
+            {
+                toRemove.Add(renderer);
+                _rendererToGameObject.Remove(renderer);
+            }
         }
+
+        foreach (Renderer renderer in toRemove)
+        {
+            _trackedRenderers.Remove(renderer);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Draw culling radius in Scene view
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, maxCullDistance);
     }
 }

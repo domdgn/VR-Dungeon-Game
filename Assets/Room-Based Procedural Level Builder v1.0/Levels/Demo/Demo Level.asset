@@ -19,11 +19,10 @@ MonoBehaviour:
   - {fileID: 439761713439684871, guid: 040be616a317e0743afd1e135de1cfc0, type: 3}
   hallwayPrefabs:
   - {fileID: 439761713439684871, guid: 83ef34eb86b3dc1498822fa8e0263c25, type: 3}
-  - {fileID: 439761713439684871, guid: 988e3f3f4543aa444aeaba4bc5f4db92, type: 3}
   - {fileID: 439761713439684871, guid: 4a3ae9fc39138804db8afbb8f5f38b0a, type: 3}
   itemList:
   - {fileID: 2158357957168189327, guid: 171daeac62ac73547b7911a1069ae410, type: 3}
   - {fileID: 1461818044417763959, guid: a801440388843fa4d97ebda2b25d6817, type: 3}
-  totalRooms: 30
+  totalRooms: 50
   hallwayChance: 0.306
   sequentialHallwayChanceMultiplier: 0.187

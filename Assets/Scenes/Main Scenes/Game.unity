@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 732972412}
   - component: {fileID: 732972409}
   - component: {fileID: 732972413}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1322,6 +1322,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1125010508721188827, guid: d5efde166617a3543980b8966ac30c24,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3080823240055346566, guid: d5efde166617a3543980b8966ac30c24,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1372,6 +1377,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3909420469397353064, guid: d5efde166617a3543980b8966ac30c24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4467540309695753776, guid: d5efde166617a3543980b8966ac30c24,
         type: 3}
       propertyPath: m_Layer
@@ -1415,6 +1425,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8347219254579032484, guid: d5efde166617a3543980b8966ac30c24, type: 3}
+    - {fileID: 2460782700534339624, guid: d5efde166617a3543980b8966ac30c24, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5efde166617a3543980b8966ac30c24, type: 3}
@@ -1557,6 +1568,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707624415}
   m_CullTransparentMesh: 1
+--- !u!1 &1727058235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3909420469397353064, guid: d5efde166617a3543980b8966ac30c24,
+    type: 3}
+  m_PrefabInstance: {fileID: 1383867421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1750263446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2483,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: neverCullObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: neverCullObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1383867422}
+    - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: neverCullObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1727058235}
     - target: {fileID: 3386811264873225168, guid: 96cd15fcaed0029419099c9449536386,
         type: 3}
       propertyPath: targetObject
