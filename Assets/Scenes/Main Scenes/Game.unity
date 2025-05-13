@@ -2649,6 +2649,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
         type: 3}
+      propertyPath: maxCullDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: minOcclusionDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
       propertyPath: neverCullObjects.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2662,6 +2672,16 @@ PrefabInstance:
       propertyPath: neverCullObjects.Array.data[1]
       value: 
       objectReference: {fileID: 1727058235}
+    - target: {fileID: 1344399959971509993, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.204
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344399959971509993, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.743
+      objectReference: {fileID: 0}
     - target: {fileID: 3386811264873225168, guid: 96cd15fcaed0029419099c9449536386,
         type: 3}
       propertyPath: targetObject

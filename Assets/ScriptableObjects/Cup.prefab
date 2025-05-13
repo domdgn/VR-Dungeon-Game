@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6922227103186701897}
   - component: {fileID: 864674095394132597}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cup
   m_TagString: Treasure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 439761713439684871, guid: 0da50ab4b3485674782463e0156351a3, type: 3}
   - {fileID: 439761713439684871, guid: 0da50ab4b3485674782463e0156351a3, type: 3}
   - {fileID: 439761713439684871, guid: 040be616a317e0743afd1e135de1cfc0, type: 3}
+  - {fileID: 439761713439684871, guid: 39e7b4fd76b1f4847bb4eeefb3010a35, type: 3}
   hallwayPrefabs:
   - {fileID: 439761713439684871, guid: 83ef34eb86b3dc1498822fa8e0263c25, type: 3}
   - {fileID: 439761713439684871, guid: 4a3ae9fc39138804db8afbb8f5f38b0a, type: 3}

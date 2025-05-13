@@ -8,13 +8,6 @@ public class TorchHolderSpawn : MonoBehaviour
 
     private void Awake()
     {
-        SimpleXRCulling cullingScript = Camera.main.GetComponent<SimpleXRCulling>();
-
-        if (cullingScript != null)
-        {
-            cullingScript.AddNeverCullObject(gameObject);
-        }
-
         if (Random.Range(0, 3) == 0)
         {
             torch.SetActive(true);
