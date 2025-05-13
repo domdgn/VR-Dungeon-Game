@@ -32,6 +32,10 @@ public class UIManager : MonoBehaviour
 
     public void ChangeSceneToGame()
     {
+        if (MoneyManager.Instance != null)
+        {
+            Destroy(MoneyManager.Instance.gameObject);
+        }
         SceneManager.LoadScene("Game");
     }
 
