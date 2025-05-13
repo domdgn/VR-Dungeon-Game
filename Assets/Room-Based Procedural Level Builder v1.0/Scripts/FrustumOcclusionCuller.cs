@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Simple frustum and occlusion culling script for XR applications
-/// Supports runtime-instantiated objects
+/// Supports runtime-instantiated objects with improved room culling
 /// </summary>
 public class SimpleXRCulling : MonoBehaviour
 {
@@ -24,6 +24,13 @@ public class SimpleXRCulling : MonoBehaviour
     [Tooltip("Maximum distance for culling (meters)")]
     public float maxCullDistance = 50f;
 
+    [Tooltip("Minimum distance before occlusion culling activates")]
+    public float minOcclusionDistance = 5f;
+
+    [Tooltip("Number of rays to cast for occlusion check")]
+    [Range(1, 5)]
+    public int occlusionRayCount = 3;
+
     [Header("Exclusions")]
     [Tooltip("Objects that should never be culled")]
     public List<GameObject> neverCullObjects = new List<GameObject>();
@@ -33,6 +40,7 @@ public class SimpleXRCulling : MonoBehaviour
     private Plane[] _frustumPlanes = new Plane[6];
     private HashSet<Renderer> _trackedRenderers = new HashSet<Renderer>();
     private Dictionary<Renderer, GameObject> _rendererToGameObject = new Dictionary<Renderer, GameObject>();
+    private Dictionary<Renderer, bool> _lastVisibilityState = new Dictionary<Renderer, bool>();
     private HashSet<Renderer> _exemptRenderers = new HashSet<Renderer>();
     private float _objectListTimer = 0f;
     private float _cullingTimer = 0f;
@@ -89,11 +97,9 @@ public class SimpleXRCulling : MonoBehaviour
             Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(true);
             foreach (Renderer renderer in renderers)
             {
-                _exemptRenderers.Add(renderer);
-
-                // Make sure exempt objects are visible
                 if (renderer != null)
                 {
+                    _exemptRenderers.Add(renderer);
                     renderer.enabled = true;
                 }
             }
@@ -108,7 +114,7 @@ public class SimpleXRCulling : MonoBehaviour
         {
             _objectListTimer = 0f;
             FindCullableObjects();
-            // Periodically update exempt renderers in case child objects change
+            CleanupTrackedRenderers();
             UpdateExemptRenderers();
         }
 
@@ -123,7 +129,6 @@ public class SimpleXRCulling : MonoBehaviour
 
     private void FindCullableObjects()
     {
-        // Find all renderers in the cullable layer
         GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
 
         foreach (GameObject obj in allObjects)
@@ -133,10 +138,11 @@ public class SimpleXRCulling : MonoBehaviour
                 Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(true);
                 foreach (Renderer renderer in renderers)
                 {
-                    if (!_trackedRenderers.Contains(renderer))
+                    if (renderer != null && !_trackedRenderers.Contains(renderer))
                     {
                         _trackedRenderers.Add(renderer);
                         _rendererToGameObject[renderer] = obj;
+                        _lastVisibilityState[renderer] = true; // Default to visible
                     }
                 }
             }
@@ -160,14 +166,14 @@ public class SimpleXRCulling : MonoBehaviour
                 continue;
             }
 
-            // Get bounds and check distance
+            // Get bounds
             Bounds bounds = renderer.bounds;
             float distance = Vector3.Distance(cameraPos, bounds.center);
 
-            // Skip if too far away
+            // Skip if too far away - basic distance culling
             if (distance > maxCullDistance)
             {
-                renderer.enabled = false;
+                SetRendererState(renderer, false);
                 continue;
             }
 
@@ -175,17 +181,76 @@ public class SimpleXRCulling : MonoBehaviour
             bool inFrustum = GeometryUtility.TestPlanesAABB(_frustumPlanes, bounds);
             if (!inFrustum)
             {
-                renderer.enabled = false;
+                // Only disable if it's a significant distance away
+                if (distance > minOcclusionDistance)
+                {
+                    SetRendererState(renderer, false);
+                }
                 continue;
             }
 
-            // Occlusion culling
-            bool isVisible = !IsOccluded(cameraPos, bounds.center, _rendererToGameObject[renderer]);
-            renderer.enabled = isVisible;
+            // Only do occlusion culling if beyond minimum distance
+            // This prevents adjacent rooms from disappearing
+            if (distance <= minOcclusionDistance)
+            {
+                SetRendererState(renderer, true);
+                continue;
+            }
+
+            // Multi-ray occlusion culling for better accuracy
+            bool isVisible = !IsOccludedMultiRay(cameraPos, bounds, _rendererToGameObject[renderer]);
+            SetRendererState(renderer, isVisible);
         }
     }
 
-    private bool IsOccluded(Vector3 fromPos, Vector3 toPos, GameObject self)
+    private void SetRendererState(Renderer renderer, bool visible)
+    {
+        // Check if state changed
+        if (_lastVisibilityState.ContainsKey(renderer) && _lastVisibilityState[renderer] == visible)
+        {
+            // State hasn't changed, don't update
+            return;
+        }
+
+        renderer.enabled = visible;
+        _lastVisibilityState[renderer] = visible;
+    }
+
+    private bool IsOccludedMultiRay(Vector3 fromPos, Bounds targetBounds, GameObject self)
+    {
+        // Central ray to the center of the bounds
+        bool centerOccluded = IsRayOccluded(fromPos, targetBounds.center, self);
+
+        // If using just one ray, return the result of the center ray check
+        if (occlusionRayCount <= 1) return centerOccluded;
+
+        // Test additional rays if more than 1 ray requested
+        int occludedCount = centerOccluded ? 1 : 0;
+        float occlusionThreshold = Mathf.Ceil(occlusionRayCount * 0.6f); // 60% of rays must be occluded
+
+        // Check different points on the bounds
+        if (occlusionRayCount >= 3)
+        {
+            Vector3 topPoint = targetBounds.center + new Vector3(0, targetBounds.extents.y * 0.8f, 0);
+            if (IsRayOccluded(fromPos, topPoint, self)) occludedCount++;
+
+            Vector3 bottomPoint = targetBounds.center + new Vector3(0, -targetBounds.extents.y * 0.8f, 0);
+            if (IsRayOccluded(fromPos, bottomPoint, self)) occludedCount++;
+        }
+
+        if (occlusionRayCount >= 5)
+        {
+            Vector3 leftPoint = targetBounds.center + new Vector3(-targetBounds.extents.x * 0.8f, 0, 0);
+            if (IsRayOccluded(fromPos, leftPoint, self)) occludedCount++;
+
+            Vector3 rightPoint = targetBounds.center + new Vector3(targetBounds.extents.x * 0.8f, 0, 0);
+            if (IsRayOccluded(fromPos, rightPoint, self)) occludedCount++;
+        }
+
+        return occludedCount >= occlusionThreshold;
+    }
+
+    private bool IsRayOccluded(Vector3 fromPos, Vector3 toPos, GameObject self)
     {
         Vector3 direction = toPos - fromPos;
         float distance = direction.magnitude;
@@ -195,7 +260,9 @@ public class SimpleXRCulling : MonoBehaviour
         if (Physics.Raycast(fromPos, direction, out hit, distance, occluderLayer))
         {
             // Not occluded if we hit ourselves
-            if (hit.collider.gameObject == self || hit.collider.transform.IsChildOf(self.transform))
+            if (hit.collider.gameObject == self ||
+                (hit.collider.transform.IsChildOf(self.transform)) ||
+                (self.transform.IsChildOf(hit.collider.transform)))
             {
                 return false;
             }
@@ -214,13 +281,14 @@ public class SimpleXRCulling : MonoBehaviour
             if (renderer == null)
             {
                 toRemove.Add(renderer);
-                _rendererToGameObject.Remove(renderer);
             }
         }
 
         foreach (Renderer renderer in toRemove)
         {
             _trackedRenderers.Remove(renderer);
+            _rendererToGameObject.Remove(renderer);
+            _lastVisibilityState.Remove(renderer);
         }
     }
 
@@ -229,5 +297,9 @@ public class SimpleXRCulling : MonoBehaviour
         // Draw culling radius in Scene view
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, maxCullDistance);
+
+        // Draw min occlusion distance
+        Gizmos.color = new Color(0, 1, 0, 0.3f);
+        Gizmos.DrawWireSphere(transform.position, minOcclusionDistance);
     }
 }
