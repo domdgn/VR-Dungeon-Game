@@ -18,3 +18,5 @@ MonoBehaviour:
   safeFallVelocity: 2
   damageMultiplier: 1
   ObjectPrefab: {fileID: 1647118318, guid: 4dd5b096b1447b2458aaf237d9bc1520, type: 3}
+  minValue: 500
+  maxValue: 125
