@@ -16,8 +16,6 @@ public class ObjectInformation : MonoBehaviour, IDamageable
     
     private void Start()
     {
-        ItemInformation.Createprefab();
-
         // Debug output to confirm values
         Debug.Log(ItemInformation.objectName);
 

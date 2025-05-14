@@ -11,13 +11,6 @@ public class ScriptableObjectInformation : ScriptableObject
    public AudioClip damageAudio;
    public float safeFallVelocity; // Hieght for the item to take damage
    public float damageMultiplier; // Set the multiplier for damage  
-   public GameObject ObjectPrefab; // Prefab for the objcet
    public float minValue;
    public float maxValue;
-
-   public void Createprefab()
-   {
-      Debug.Log("Hello"); // creates the prefab into the scene
-   }
-
 }
