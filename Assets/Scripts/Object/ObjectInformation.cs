@@ -22,7 +22,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
 
         Value();
 
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>(true);
         origColor = meshRenderer.material.color;
     }
 

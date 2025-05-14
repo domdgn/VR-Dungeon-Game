@@ -9,11 +9,6 @@ public class ObjectScanner : MonoBehaviour
   RaycastHit hit;
   [SerializeField] TextMeshProUGUI itemValue;
 
-  void FixedUpdate()
-  {
-    Scanner();
-  }
-
   public void Scanner()
   {
     if (Physics.Raycast(transform.position, transform.forward, out hit))
