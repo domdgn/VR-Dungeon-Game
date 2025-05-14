@@ -1,4 +1,4 @@
-# VR Dungeon Game
+# Time Heist | Meta Quest
 
 This repository contains the project files for **Time Heist**, a Virtual-Reality Unity project developed for our **First Year, Semester 2 Group Project**.
 Players run in, collect artifacts and escape a collapsing pyramid while managing inventory and time constraints.
