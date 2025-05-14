@@ -5399,6 +5399,8 @@ MonoBehaviour:
   objectListUpdateInterval: 1
   cullingUpdateInterval: 0.1
   maxCullDistance: 50
+  minOcclusionDistance: 5
+  occlusionRayCount: 3
   neverCullObjects: []
 --- !u!1 &7045810631349172662
 GameObject:
@@ -7273,7 +7275,7 @@ Transform:
   m_GameObject: {fileID: 8628418456648560548}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.004, y: 0.367, z: 0}
+  m_LocalPosition: {x: -0.004, y: 0.094, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7298,7 +7300,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.1, z: 0.1}
+  m_Size: {x: 0.55, y: 0.7, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8764247350882950294
 GameObject:
