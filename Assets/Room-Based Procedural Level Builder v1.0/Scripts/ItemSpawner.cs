@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] private Transform spawnedItemsParent;
+    [SerializeField] private Vector3 colliderBottomOffset = Vector3.zero;
 
     private List<GameObject> items = new List<GameObject>();
     private List<Transform> itemSpawnPoints = new List<Transform>();
@@ -35,12 +36,26 @@ public class ItemSpawner : MonoBehaviour
             return;
 
         GameObject itemToSpawn = items[Random.Range(0, items.Count)];
-        Debug.Log($"Spawning {itemToSpawn.name}");
+        //Debug.Log($"Spawning {itemToSpawn.name}");
 
+        // Temporarily spawn the item at spawn point
         Vector3 spawnPos = spawnPoint.position + spawnOffset;
         GameObject spawnedItem = Instantiate(itemToSpawn, spawnPos, spawnPoint.rotation);
 
-        // Parent the spawned item
+        Collider itemCollider = spawnedItem.GetComponent<Collider>();
+        if (itemCollider != null)
+        {
+            float bottomOffset = itemCollider.bounds.min.y - spawnedItem.transform.position.y;
+
+            Vector3 adjustedPosition = spawnPos;
+            adjustedPosition.y -= bottomOffset;
+
+            adjustedPosition += colliderBottomOffset;
+
+            spawnedItem.transform.position = adjustedPosition;
+        }
+
+
         if (spawnedItemsParent != null)
             spawnedItem.transform.SetParent(spawnedItemsParent);
 

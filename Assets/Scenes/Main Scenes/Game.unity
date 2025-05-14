@@ -299,7 +299,7 @@ PrefabInstance:
     - target: {fileID: 4780730295573191922, guid: f4ab679343a78ca41a53b282cc4e2f7f,
         type: 3}
       propertyPath: spawnOffset.y
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4780730295573191922, guid: f4ab679343a78ca41a53b282cc4e2f7f,
         type: 3}
