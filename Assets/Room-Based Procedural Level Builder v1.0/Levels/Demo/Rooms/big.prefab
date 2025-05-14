@@ -831,6 +831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_01
       objectReference: {fileID: 0}
+    - target: {fileID: 952783696, guid: f3ccfa9003e9e7e4799853e37266bcd3, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3743832947692670511, guid: f3ccfa9003e9e7e4799853e37266bcd3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1105,6 +1109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Library_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3745778965607210444, guid: 09e3299bb2f269e4bbd8946247308a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6177829293236325244, guid: 09e3299bb2f269e4bbd8946247308a73,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1340,6 +1349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Library_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745778965607210444, guid: 09e3299bb2f269e4bbd8946247308a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6177829293236325244, guid: 09e3299bb2f269e4bbd8946247308a73,
         type: 3}
@@ -1746,6 +1760,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: coffin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b7208df62ee686549bede652593f5165,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
