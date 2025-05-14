@@ -16,7 +16,6 @@ MonoBehaviour:
   mass: 25
   damageAudio: {fileID: 8300000, guid: 04d1cac4305ad6f4da21aad8e4292bc3, type: 3}
   safeFallVelocity: 2
-  damageMultiplier: 1
-  ObjectPrefab: {fileID: 1647118318, guid: 4dd5b096b1447b2458aaf237d9bc1520, type: 3}
+  damageMultiplier: 10
   minValue: 500
   maxValue: 125
