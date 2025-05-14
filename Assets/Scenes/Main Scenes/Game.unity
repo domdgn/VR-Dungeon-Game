@@ -1712,6 +1712,18 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
+--- !u!114 &1333468722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1925205929154166292, guid: 96cd15fcaed0029419099c9449536386,
+    type: 3}
+  m_PrefabInstance: {fileID: 6007061376927955198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f045202d08a304a993164ec26657e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1383867421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3420,6 +3432,46 @@ PrefabInstance:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 732972408}
+    - target: {fileID: 3608365013922979919, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382117891173038879, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382117891173038879, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382117891173038879, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1333468722}
+    - target: {fileID: 6382117891173038879, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382117891173038879, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Scanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382117891173038879, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ObjectScanner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382117891173038879, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8135756535542477793, guid: 96cd15fcaed0029419099c9449536386,
         type: 3}
       propertyPath: m_Name
