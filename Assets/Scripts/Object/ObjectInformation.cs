@@ -16,8 +16,6 @@ public class ObjectInformation : MonoBehaviour, IDamageable
     
     private void Start()
     {
-        // Initialize object with randomized values from the ScriptableObject
-        ItemInformation.Randomise();
         ItemInformation.Createprefab();
 
         // Debug output to confirm values
@@ -31,7 +29,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
 
     void Value()
     {
-        value = Random.Range(40, 1000);
+        value = Random.Range(ItemInformation.minValue, ItemInformation.maxValue);
     }
 
     // This method is required by the IFallDamageable interface

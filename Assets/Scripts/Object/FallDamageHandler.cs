@@ -7,15 +7,14 @@ public class FallDamagehandler : MonoBehaviour
     private Rigidbody rb; // Rigidbody reference to get velocity
     private bool isGrounded = false; // Tracks whether the object is touching the ground
     private bool onWall = false; // tracks whether the object is touching the wall 
-    private float lastYVelocity = 0f; // Stores vertical velocity while falling
-    private float lastXVelocity = 0f; // Stores horizontal velocity while falling 
+    private float Finalvelocity = 0f;
     private IDamageable damageable; // Interface reference to apply damage
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); // Get Rigidbody component
-        damageable = GetComponent<IDamageable>(); // Get the damageable component (must implement IDamageable)
+        damageable = GetComponent<IDamageable>(); // Get the damageable component (must implement IDamageable) 
     }
 
     void Update()
@@ -23,8 +22,7 @@ public class FallDamagehandler : MonoBehaviour
         // While the object is in the air, track the downward velocity
         if (!isGrounded)
         {
-            lastYVelocity = rb.velocity.y;
-            lastXVelocity =  rb.velocity.x;
+           Finalvelocity = rb.velocity.y + rb.velocity.x;
         }
     }
 
@@ -34,7 +32,7 @@ public class FallDamagehandler : MonoBehaviour
         if (!isGrounded && collision.gameObject.CompareTag("Ground"))
         {
             // Calculate impact speed from the last recorded fall speed
-            float impactVelocity = Mathf.Abs(lastYVelocity);
+            float impactVelocity = Mathf.Abs(Finalvelocity);
 
             // If the object has a fall damage handler, apply the damage
             damageable?.Damage(impactVelocity);
@@ -45,7 +43,7 @@ public class FallDamagehandler : MonoBehaviour
         
         if (!onWall && !isGrounded && collision.gameObject.CompareTag("Wall"))
         {
-            float impactVelocity = Mathf.Abs(lastXVelocity);
+            float impactVelocity = Mathf.Abs(Finalvelocity);
             damageable?.Damage(impactVelocity);
             onWall = true;
         }

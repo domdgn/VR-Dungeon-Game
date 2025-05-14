@@ -12,13 +12,8 @@ public class ScriptableObjectInformation : ScriptableObject
    public float safeFallVelocity; // Hieght for the item to take damage
    public float damageMultiplier; // Set the multiplier for damage  
    public GameObject ObjectPrefab; // Prefab for the objcet
-
-   public void Randomise() // used to randomise the values of the items at the begining of the level
-   {
-      mass = Random.Range(20, 100);
-      safeFallVelocity = Random.Range(1,5);
-      damageMultiplier =  Random.Range(1,15);
-   }
+   public float minValue;
+   public float maxValue;
 
    public void Createprefab()
    {
