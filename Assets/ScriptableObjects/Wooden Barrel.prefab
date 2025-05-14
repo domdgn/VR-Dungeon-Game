@@ -108,6 +108,7 @@ MonoBehaviour:
     type: 3}
   uiSpawnPoint: {fileID: 8157560357884808203}
   value: 0
+  audioSource: {fileID: 0}
 --- !u!54 &5298909261175931516
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,8 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29542fb9e42e032428f855e58b834e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 8698606001499343693}
-  Audio: {fileID: 11400000, guid: de4caea0eec45674d91e82c4fb501297, type: 2}
 --- !u!114 &8527043012358348334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +389,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.3708422
+  MinDistance: 0.8393573
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
