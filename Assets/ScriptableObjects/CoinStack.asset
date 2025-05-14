@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a1c8878840d9d42861681f429693ba, type: 3}
   m_Name: CoinStack
   m_EditorClassIdentifier: 
-  objectName: 
-  mass: 0
-  damageAudio: {fileID: 0}
-  safeFallVelocity: 0
-  damageMultiplier: 0
-  minValue: 0
-  maxValue: 0
+  objectName: Coin Stack
+  mass: 15
+  damageAudio: {fileID: 8300000, guid: 4597d662ea4dad449b41e4f394b0f7e3, type: 3}
+  safeFallVelocity: 1
+  damageMultiplier: 35
+  minValue: 20
+  maxValue: 50

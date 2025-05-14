@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0a1c8878840d9d42861681f429693ba, type: 3}
-  m_Name: Bracelet
+  m_Name: Plate
   m_EditorClassIdentifier: 
-  objectName: Bracelet
-  mass: 20
-  damageAudio: {fileID: 8300000, guid: 4597d662ea4dad449b41e4f394b0f7e3, type: 3}
-  safeFallVelocity: 5
-  damageMultiplier: 20
-  minValue: 450
-  maxValue: 600
+  objectName: Plate
+  mass: 10
+  damageAudio: {fileID: 8300000, guid: b0bbffbe2760f354c80e6538ce81957c, type: 3}
+  safeFallVelocity: 1.5
+  damageMultiplier: 45
+  minValue: 100
+  maxValue: 150
