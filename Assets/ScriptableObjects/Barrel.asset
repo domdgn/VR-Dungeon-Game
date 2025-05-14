@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Wooden Barrel
   mass: 25
-  damageAudio: {fileID: 0}
+  damageAudio: {fileID: 8300000, guid: af863a2407bed07429f1cbfc2a56b3c7, type: 3}
   safeFallVelocity: 3
   damageMultiplier: 10
   minValue: 150

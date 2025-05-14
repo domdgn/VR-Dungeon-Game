@@ -276,7 +276,7 @@ MonoBehaviour:
     type: 3}
   uiSpawnPoint: {fileID: 2670397834587746469}
   value: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1384296712433862458}
 --- !u!114 &5792406788382696359
 MonoBehaviour:
   m_ObjectHideFlags: 0
