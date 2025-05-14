@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec48831bef1791479d1d825bb2a5ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
   ItemInformation: {fileID: 11400000, guid: de4caea0eec45674d91e82c4fb501297, type: 2}
   damageUIprefab: {fileID: 3866806443294763596, guid: 3b32e9a1b2ce5bf43a77c1ee7508c930,
     type: 3}
@@ -148,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29542fb9e42e032428f855e58b834e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 8698606001499343693}
+  Audio: {fileID: 0}
 --- !u!114 &8527043012358348334
 MonoBehaviour:
   m_ObjectHideFlags: 0

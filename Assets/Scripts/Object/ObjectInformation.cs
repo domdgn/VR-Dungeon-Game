@@ -5,7 +5,6 @@ using TMPro;
 
 public class ObjectInformation : MonoBehaviour, IDamageable
 {
-    public AudioSource audioSource;
     [SerializeField] private ScriptableObjectInformation ItemInformation; // ScriptableObject that stores object data (e.g. name)
     public GameObject damageUIprefab;
     public Transform uiSpawnPoint;
@@ -44,7 +43,6 @@ public class ObjectInformation : MonoBehaviour, IDamageable
 
             StartCoroutine(Flash());
             ShowDamageUI(damage);
-            DamageSound();
 
             // Output the damage taken and remaining value
             Debug.Log($"Object took {damage} fall damage! Health is now {value}");
@@ -77,18 +75,6 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             Vector3 spawnPos = uiSpawnPoint ? uiSpawnPoint.position : transform.position + Vector3.up;
             GameObject ui = Instantiate(damageUIprefab, spawnPos, Quaternion.identity);
             ui.GetComponentInChildren<TextMeshProUGUI>().text = "-" + damage.ToString("0");
-        }
-    }
-
-    void DamageSound()
-    {
-        if (audioSource == null)
-        {
-            audioSource = GetComponent<AudioSource>();
-        }
-        if (audioSource != null && ItemInformation.damageAudio != null)
-        {
-            audioSource.PlayOneShot(ItemInformation.damageAudio);
         }
     }
 

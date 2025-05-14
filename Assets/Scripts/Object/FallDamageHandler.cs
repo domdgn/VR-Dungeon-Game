@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FallDamagehandler : MonoBehaviour
 {
+    public AudioSource audioSource;
+    [SerializeField] private ScriptableObjectInformation Audio;
     private Rigidbody rb; // Rigidbody reference to get velocity
     private bool isGrounded = false; // Tracks whether the object is touching the ground
     private bool onWall = false; // tracks whether the object is touching the wall 
@@ -28,6 +30,8 @@ public class FallDamagehandler : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        DamageSound();
+        
         // Check if the object lands on the ground and wasn't already grounded
         if (!isGrounded && collision.gameObject.CompareTag("Ground"))
         {
@@ -62,4 +66,17 @@ public class FallDamagehandler : MonoBehaviour
             onWall = false;
         }
     } 
+
+    void DamageSound()
+    {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource != null && Audio.damageAudio != null)
+        {
+            audioSource.PlayOneShot(Audio.damageAudio);
+        }
+    }
+
 }
