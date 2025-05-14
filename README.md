@@ -1,14 +1,14 @@
 # VR Dungeon Game
 
-This repository contains the **VR Dungeon Game** (working title), a Unity project developed for our **First Year, Semester 2 Group Project**.
-Players collect artifacts, solve puzzles, and escape a collapsing pyramid while managing inventory and weight constraints.
+This repository contains the project files for **Time Heist**, a Virtual-Reality Unity project developed for our **First Year, Semester 2 Group Project**.
+Players run in, collect artifacts and escape a collapsing pyramid while managing inventory and time constraints.
 
 ---
 
 ## Project Details
 - **Engine:** Unity
 - **Version:** **`2022.3.47f1`** *(Ensure you use this version to avoid compatibility issues.)*
-- **Platform:** Meta Quest
+- **Platform:** Meta Quest 2/3/Pro
 
 ---
 
