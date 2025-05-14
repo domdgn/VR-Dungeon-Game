@@ -14,7 +14,7 @@ public class ObjectScanner : MonoBehaviour
     Scanner();
   }
 
-  void Scanner()
+  public void Scanner()
   {
     if (Physics.Raycast(transform.position, transform.forward, out hit))
     {
