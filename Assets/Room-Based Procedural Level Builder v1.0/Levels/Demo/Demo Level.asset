@@ -25,6 +25,13 @@ MonoBehaviour:
   - {fileID: 2158357957168189327, guid: 171daeac62ac73547b7911a1069ae410, type: 3}
   - {fileID: 1461818044417763959, guid: a801440388843fa4d97ebda2b25d6817, type: 3}
   - {fileID: 1461818044417763959, guid: ddcf8fad90e0cac4987a2647a42041cb, type: 3}
+  - {fileID: 1461818044417763959, guid: 5517db155d5f9f24681e004a2b575e87, type: 3}
+  - {fileID: 1461818044417763959, guid: 94ad6d3fe98ed434382392be569fe8ae, type: 3}
+  - {fileID: 1461818044417763959, guid: bedbd4c64f953484082d3b469ad0f96f, type: 3}
+  - {fileID: 1461818044417763959, guid: dba9ab32f2c46c742b75771142560759, type: 3}
+  - {fileID: 1461818044417763959, guid: 7aed341ecb7cb7445972845d9f18f22f, type: 3}
+  - {fileID: 1461818044417763959, guid: 6ec327e8c6413e74394f60cb07034438, type: 3}
+  - {fileID: 1461818044417763959, guid: 82c8110dd6b528a41932f92ea800bb2d, type: 3}
   totalRooms: 50
   hallwayChance: 0.306
   sequentialHallwayChanceMultiplier: 0.187
