@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a1c8878840d9d42861681f429693ba, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  objectName: Bottle_3
+  objectName: 
   mass: 39
+  damageAudio: {fileID: 0}
   safeFallVelocity: 3
   damageMultiplier: 10
-  ObjectPrefab: {fileID: 1891320786, guid: a1f3f1e47ecc6d848bf23ac78e549112, type: 3}
+  minValue: 0
+  maxValue: 0
