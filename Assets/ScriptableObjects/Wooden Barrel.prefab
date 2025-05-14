@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1723081727781510527}
   - component: {fileID: 5801807802475862629}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Wooden Barrel
   m_TagString: Treasure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 2462602261012397874}
   - component: {fileID: 8698606001499343693}
   m_Layer: 0
-  m_Name: Barrell Sound
+  m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

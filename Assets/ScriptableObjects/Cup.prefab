@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2143649700096401816}
   - component: {fileID: 1384296712433862458}
   m_Layer: 0
-  m_Name: CupSound
+  m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
