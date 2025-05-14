@@ -489,6 +489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box_03
       objectReference: {fileID: 0}
+    - target: {fileID: 10603838, guid: b97eefb17f24b0e4191921db18ac6999, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8003066844573949702, guid: b97eefb17f24b0e4191921db18ac6999,
         type: 3}
       propertyPath: m_LocalScale.x
