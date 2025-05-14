@@ -208,8 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29542fb9e42e032428f855e58b834e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1384296712433862458}
-  Audio: {fileID: 11400000, guid: 0a35fd46ceee22c428785b811472fc16, type: 2}
 --- !u!114 &8603528656407434197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +225,7 @@ MonoBehaviour:
     type: 3}
   uiSpawnPoint: {fileID: 2670397834587746469}
   value: 0
+  audioSource: {fileID: 1384296712433862458}
 --- !u!114 &5792406788382696359
 MonoBehaviour:
   m_ObjectHideFlags: 0

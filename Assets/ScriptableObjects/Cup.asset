@@ -15,7 +15,7 @@ MonoBehaviour:
   objectName: Glass cup
   mass: 92
   damageAudio: {fileID: 8300000, guid: b0bbffbe2760f354c80e6538ce81957c, type: 3}
-  safeFallVelocity: 2
+  safeFallVelocity: 3
   damageMultiplier: 20
   minValue: 500
   maxValue: 1000

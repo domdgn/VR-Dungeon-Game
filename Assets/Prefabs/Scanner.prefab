@@ -301,9 +301,9 @@ MonoBehaviour:
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: e5f045202d08a304a993164ec26657e0, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 2922688202310868642}
+        m_TargetAssemblyTypeName: ObjectScanner, Assembly-CSharp
+        m_MethodName: Scanner
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

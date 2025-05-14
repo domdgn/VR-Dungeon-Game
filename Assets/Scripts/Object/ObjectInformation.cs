@@ -12,6 +12,8 @@ public class ObjectInformation : MonoBehaviour, IDamageable
     MeshRenderer meshRenderer;
     Color origColor;
     float flashTime = 0.15f; 
+    public AudioSource audioSource;
+
     
     private void Start()
     {
@@ -43,6 +45,7 @@ public class ObjectInformation : MonoBehaviour, IDamageable
 
             StartCoroutine(Flash());
             ShowDamageUI(damage);
+            DamageSound();
 
             // Output the damage taken and remaining value
             Debug.Log($"Object took {damage} fall damage! Health is now {value}");
@@ -77,6 +80,19 @@ public class ObjectInformation : MonoBehaviour, IDamageable
             ui.GetComponentInChildren<TextMeshProUGUI>().text = "-" + damage.ToString("0");
         }
     }
+
+     void DamageSound()
+    {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource != null && ItemInformation.damageAudio != null)
+        {
+            audioSource.PlayOneShot(ItemInformation.damageAudio);
+        }
+    }
+
 
      public float GetValue()
     {
