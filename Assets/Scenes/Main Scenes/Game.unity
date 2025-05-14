@@ -3027,7 +3027,7 @@ PrefabInstance:
     - target: {fileID: 3944262488326569095, guid: e2b541f0955d1be46b7387d22250554b,
         type: 3}
       propertyPath: timerLength
-      value: 300
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 3944262488326569095, guid: e2b541f0955d1be46b7387d22250554b,
         type: 3}
@@ -3277,6 +3277,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 651824138962164002, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1017778987163965848, guid: 96cd15fcaed0029419099c9449536386,
         type: 3}
       propertyPath: m_Enabled
@@ -3322,6 +3327,11 @@ PrefabInstance:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 732972408}
+    - target: {fileID: 5689065471467656078, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8135756535542477793, guid: 96cd15fcaed0029419099c9449536386,
         type: 3}
       propertyPath: m_Name
