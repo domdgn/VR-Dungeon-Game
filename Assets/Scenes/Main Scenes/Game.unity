@@ -2894,6 +2894,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!4 &2023019487 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8144032271562238309, guid: 96cd15fcaed0029419099c9449536386,
+    type: 3}
+  m_PrefabInstance: {fileID: 6007061376927955198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &543003266290539343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3420,6 +3426,11 @@ PrefabInstance:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 732972408}
+    - target: {fileID: 6511369141695497217, guid: 96cd15fcaed0029419099c9449536386,
+        type: 3}
+      propertyPath: xrOrigin
+      value: 
+      objectReference: {fileID: 2023019487}
     - target: {fileID: 8135756535542477793, guid: 96cd15fcaed0029419099c9449536386,
         type: 3}
       propertyPath: m_Name
