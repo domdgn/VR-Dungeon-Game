@@ -34,7 +34,7 @@ public class FallDamagehandler : MonoBehaviour
             // Calculate impact speed from the last recorded fall speed
             float impactVelocity = Mathf.Abs(Finalvelocity);
 
-            // If the object has a fall damage handler, apply the damage
+            // Apply damage based on impact velocity if the object supports the IDamageable interface
             damageable?.Damage(impactVelocity);
 
             // Mark object as grounded again
